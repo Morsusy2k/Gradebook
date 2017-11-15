@@ -23,6 +23,20 @@ namespace Gradebook.BusinessLogicLayer.Tests
             _userManager.Add(user3);
         }
 
+        public static void UpdateAndDelete()
+        {
+            User user1 = _userManager.GetById(96);
+            user1.Name = "Dragance-Updated";
+
+            User user2 = _userManager.GetById(97);
+            user2.Name = "Kmilka-Updated";
+
+            User user3 = _userManager.GetById(98);
+            _userManager.Save(user1);
+            _userManager.Save(user2);
+            _userManager.Remove(user3);
+        }
+
         public static void ShowAll()
         {
             foreach (var user in _userManager.GetAll())

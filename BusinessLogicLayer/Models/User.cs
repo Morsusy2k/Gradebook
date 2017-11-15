@@ -31,23 +31,23 @@ namespace Gradebook.BusinessLogicLayer.Models
         {
             get
             {
-                Debug.Assert(Name != null);
-                return Name;
+                Debug.Assert(name != null);
+                return name;
             }
 
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Name", "Valid Name is mandatory!");
+                    throw new ArgumentNullException("name", "Valid name is mandatory!");
 
-                string oldValue = Name;
+                string oldValue = name;
                 try
                 {
-                    Name = value;
+                    name = value;
                 }
                 catch
                 {
-                    Name = oldValue;
+                    name = oldValue;
                     throw;
                 }
             }
@@ -56,23 +56,23 @@ namespace Gradebook.BusinessLogicLayer.Models
         {
             get
             {
-                Debug.Assert(Surname != null);
-                return Surname;
+                Debug.Assert(surname != null);
+                return surname;
             }
 
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Surname", "Valid Surname is mandatory!");
+                    throw new ArgumentNullException("surname", "Valid surname is mandatory!");
 
-                string oldValue = Surname;
+                string oldValue = surname;
                 try
                 {
-                    Surname = value;
+                    surname = value;
                 }
                 catch
                 {
-                    Surname = oldValue;
+                    surname = oldValue;
                     throw;
                 }
             }
@@ -88,7 +88,7 @@ namespace Gradebook.BusinessLogicLayer.Models
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("Username", "Valid username is mandatory!");
+                    throw new ArgumentNullException("username", "Valid username is mandatory!");
 
                 string oldValue = username;
                 try

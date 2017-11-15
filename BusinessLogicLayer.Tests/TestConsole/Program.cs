@@ -6,6 +6,8 @@ namespace Gradebook.BusinessLogicLayer.TestConsole
     {
         static void Main(string[] args)
         {
+            //UsersTest.Populate();
+            //UsersTest.UpdateAndDelete();
             UsersTest.ShowAll();
         }
     }
