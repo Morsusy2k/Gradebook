@@ -1,0 +1,5 @@
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Models\bin\Debug\Models.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Models\bin\Debug\Models.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Models\obj\Debug\Models.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Models\obj\Debug\Models.pdb

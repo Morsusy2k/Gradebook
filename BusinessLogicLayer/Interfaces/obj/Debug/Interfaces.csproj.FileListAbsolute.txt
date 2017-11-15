@@ -1,0 +1,12 @@
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.BusinessLogicLayer.Interfaces.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.BusinessLogicLayer.Interfaces.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.DataAccessLayer.Models.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.Utilities.Common.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Models.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.DataAccessLayer.Models.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Gradebook.Utilities.Common.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\bin\Debug\Models.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\obj\Debug\Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\obj\Debug\Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\obj\Debug\Gradebook.BusinessLogicLayer.Interfaces.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Interfaces\obj\Debug\Gradebook.BusinessLogicLayer.Interfaces.pdb
