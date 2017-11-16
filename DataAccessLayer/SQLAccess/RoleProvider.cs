@@ -199,5 +199,11 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             }
         }
         #endregion
+
+        #region [UserRoleMethods]
+
+        //Odje!
+
+        #endregion
     }
 }
