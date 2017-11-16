@@ -8,7 +8,12 @@ namespace Gradebook.BusinessLogicLayer.TestConsole
         {
             //UsersTest.Populate();
             //UsersTest.UpdateAndDelete();
-            UsersTest.ShowAll();
+            //UsersTest.ShowAll();
+
+            //RolesTest.ShowAll();
+            //RolesTest.Populate();
+            //RolesTest.UpdateAndDelete();
+            RolesTest.ShowAll();
         }
     }
 }
