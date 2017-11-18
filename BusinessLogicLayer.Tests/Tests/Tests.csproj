@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserRolesTest.cs" />
     <Compile Include="RolesTest.cs" />
     <Compile Include="UsersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

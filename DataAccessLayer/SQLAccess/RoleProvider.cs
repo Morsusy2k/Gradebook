@@ -98,28 +98,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
                 }
             }
         }
-        public Role UpdateRole(Role role, ITransaction transaction = null)
-        {
-            if (transaction != null)
-            {
-                using (var sqlCommand = new SqlCommand("RoleUpdate", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
-                {
-                    return UpdateRoleSqlCommand(sqlCommand, role);
-                }
-            }
-            else
-            {
-                using (var sqlConnection = new SqlConnection(_connectionString))
-                {
-                    sqlConnection.Open();
-
-                    using (SqlCommand sqlCommand = new SqlCommand("RoleUpdate", sqlConnection))
-                    {
-                        return UpdateRoleSqlCommand(sqlCommand, role);
-                    }
-                }
-            }
-        }
+        
         public void DeleteRole(Role role, ITransaction transaction = null)
         {
             if (transaction != null)
@@ -168,23 +147,6 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             return role;
         }
 
-        public Role UpdateRoleSqlCommand(SqlCommand sqlCommand, Role role)
-        {
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-
-            sqlCommand.Parameters.AddWithValue("@Id", role.Id);
-            sqlCommand.Parameters.AddWithValue("@Name", role.Name);
-
-            int result = sqlCommand.ExecuteNonQuery();
-
-            if (result == 0)
-            {
-                throw new DBConcurrencyException("The record has been modified by an other user. Please reload the instance before updating.");
-            }
-
-            return role;
-        }
-
         public void DeleteRoleSqlCommand(SqlCommand sqlCommand, Role role)
         {
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -200,9 +162,230 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
         }
         #endregion
 
-        #region [UserRoleMethods]
+        #region [UserRoleReadMethods]
+        public List<UserRole> GetAllUserRoles()
+        {
+            List<UserRole> result = new List<UserRole>();
 
-        //Odje!
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserRoleGetAll", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<UserRole>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        public UserRole GetUserRoleById(int id)
+        {
+            UserRole result = null;
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserRoleGetById", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Id", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<UserRole>(reader);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public List<UserRole> GetUserRolesByUserId(int id)
+        {
+            List<UserRole> result = new List<UserRole>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserRolesGetByUserId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Id", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<UserRole>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+        #endregion
+
+        #region [UserRoleWriteMethods]
+
+        public void InsertUserRole(User editor, Role role, User user, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("UserRoleInsert", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    InsertUserRoleSqlCommand(sqlCommand, editor, role, user);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("UserRoleInsert", sqlConnection))
+                    {
+                        InsertUserRoleSqlCommand(sqlCommand, editor, role, user);
+                    }
+                }
+            }
+        }
+
+        public void UpdateUserRole(User editor, Role role, User user, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("UserRoleUpdate", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    UpdateUserRoleSqlCommand(sqlCommand, editor, role, user);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("UserRoleUpdate", sqlConnection))
+                    {
+                        UpdateUserRoleSqlCommand(sqlCommand, editor, role, user);
+                    }
+                }
+            }
+        }
+
+        public void DeleteUserRole(UserRole userRole, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("UserRoleDelete", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    DeleteUserRoleSqlCommand(sqlCommand, userRole);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("UserRoleDelete", sqlConnection))
+                    {
+                        DeleteUserRoleSqlCommand(sqlCommand, userRole);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region [UserRoleSqlCommandMethods]
+
+        public void InsertUserRoleSqlCommand(SqlCommand sqlCommand, User editor, Role role, User user)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            sqlCommand.Parameters.AddWithValue("@RoleId", role.Id);
+            sqlCommand.Parameters.AddWithValue("@CreatedBy", editor.Id);
+            sqlCommand.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+
+            SqlParameter outputIdParam = new SqlParameter("@Id", SqlDbType.Int);
+            outputIdParam.Direction = ParameterDirection.Output;
+            sqlCommand.Parameters.Add(outputIdParam);
+
+            SqlParameter outputVersionParam = new SqlParameter("@Version", SqlDbType.Timestamp);
+            outputVersionParam.Direction = ParameterDirection.Output;
+            sqlCommand.Parameters.Add(outputVersionParam);
+
+            sqlCommand.ExecuteNonQuery();
+
+            //user.Id = Convert.ToInt32(outputIdParam.Value);
+            user.Version = (byte[])(outputVersionParam.Value);
+        }
+
+        public void UpdateUserRoleSqlCommand(SqlCommand sqlCommand, User editor, Role role, User user)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            sqlCommand.Parameters.AddWithValue("@RoleId", role.Id);
+            sqlCommand.Parameters.AddWithValue("@ModifiedBy", editor.Id);
+            sqlCommand.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
+
+            SqlParameter outputVersionParam = new SqlParameter("@Version", SqlDbType.Timestamp);
+            outputVersionParam.Direction = ParameterDirection.InputOutput;
+            outputVersionParam.Value = user.Version;
+            sqlCommand.Parameters.Add(outputVersionParam);
+
+            int result = sqlCommand.ExecuteNonQuery();
+            user.Version = (byte[])(outputVersionParam.Value);
+
+            if (result == 0)
+            {
+                throw new DBConcurrencyException("The record has been modified by an other user. Please reload the instance before updating.");
+            }
+        }
+
+        public void DeleteUserRoleSqlCommand(SqlCommand sqlCommand, UserRole userRole)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@Id", userRole.Id);
+            sqlCommand.Parameters.AddWithValue("@Version", userRole.Version);
+
+            int result = sqlCommand.ExecuteNonQuery();
+
+            if (result == 0)
+            {
+                throw new DBConcurrencyException("The record has been modified by an other user. Please reload the instance before deleting.");
+            }
+        }
 
         #endregion
     }

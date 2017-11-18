@@ -10,8 +10,15 @@ namespace Gradebook.RepositoryLayer.Interfaces
         List<Role> GetAllRoles();
 
         Role InsertRole(Role role, ITransaction transaction = null);
-        Role UpdateRole(Role role, ITransaction transaction = null);
         void DeleteRole(Role role, ITransaction transaction = null);
+
+        List<UserRole> GetAllUserRoles();
+        List<UserRole> GetUserRolesByUserId(int id);
+        UserRole GetUserRoleById(int id);
+
+        void InsertUserRole(User editor, Role role, User user, ITransaction transaction = null);
+        void UpdateUserRole(User editor, Role role, User user, ITransaction transaction = null);
+        void DeleteUserRole(UserRole userRole, ITransaction transaction = null);
 
         ITransaction CreateNewTransaction();
     }

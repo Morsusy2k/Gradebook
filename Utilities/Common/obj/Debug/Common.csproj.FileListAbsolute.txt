@@ -6,7 +6,6 @@ C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\Common\obj\De
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\Common\obj\Debug\Gradebook.Utilities.Common.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\bin\Debug\Gradebook.Utilities.Common.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\bin\Debug\Gradebook.Utilities.Common.pdb
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\obj\Debug\Gradebook.Utilities.Common.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\Utilities\Common\obj\Debug\Gradebook.Utilities.Common.pdb

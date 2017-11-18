@@ -20,7 +20,7 @@ namespace Gradebook.BusinessLogicLayer.Tests
             _roleManager.Add(role3);
         }
 
-        public static void UpdateAndDelete()
+        /*public static void UpdateAndDelete()
         {
             Role role1 = _roleManager.GetById(5);
             role1.Name = "Student";
@@ -28,7 +28,7 @@ namespace Gradebook.BusinessLogicLayer.Tests
             Role role2 = _roleManager.GetById(7);
             _roleManager.Save(role1);
             _roleManager.Remove(role2);
-        }
+        }*/
 
         public static void ShowAll()
         {

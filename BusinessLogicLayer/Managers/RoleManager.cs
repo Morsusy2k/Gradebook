@@ -29,14 +29,34 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.InsertRole(Map(role)));
         }
 
-        public Role Save(Role role)
+        public IEnumerable<UserRole> GetAllUserRoles()
         {
-            return Map(_repository.UpdateRole(Map(role)));
+            return _repository.GetAllUserRoles().Select(x => Map(x));
         }
 
-        public void Remove(Role role)
+        public IEnumerable<UserRole> GetAllUserRolesByUserId(int id)
         {
-            _repository.DeleteRole(Map(role));
+            return _repository.GetUserRolesByUserId(id).Select(x => Map(x));
+        }
+
+        public UserRole GetUserRoleById(int id)
+        {
+            return Map(_repository.GetUserRoleById(id));
+        }
+
+        public void AddUserRole(User editor, Role role, User user)
+        {
+            _repository.InsertUserRole(Map(editor), Map(role), Map(user));
+        }
+
+        public void SaveUserRole(User editor, Role role, User user)
+        {
+            _repository.UpdateUserRole(Map(editor), Map(role), Map(user));
+        }
+
+        public void DeleteUserRole(UserRole userRole)
+        {
+            _repository.DeleteUserRole(Map(userRole));
         }
 
         public Role Map(DataAccessLayer.Models.Role dbRole)
@@ -56,6 +76,45 @@ namespace Gradebook.BusinessLogicLayer.Managers
                 throw new ArgumentNullException("Role", "Valid role is mandatory!");
 
             return new DataAccessLayer.Models.Role(role.Id, role.Name);
+        }
+
+        public UserRole Map(DataAccessLayer.Models.UserRole dbUserRole)
+        {
+            if (Equals(dbUserRole, null))
+                return null;
+
+            UserRole userRole = new UserRole(dbUserRole.UserId, dbUserRole.RoleId, dbUserRole.CreatedBy, dbUserRole.CreatedOn, dbUserRole.Version, dbUserRole.ModifiedBy, dbUserRole.ModifiedOn);
+            userRole.Id = dbUserRole.Id;
+
+            return userRole;
+        }
+
+        public DataAccessLayer.Models.UserRole Map(UserRole userRole)
+        {
+            if (Equals(userRole, null))
+                throw new ArgumentNullException("userRole", "Valid userRole is mandatory!");
+
+            return new DataAccessLayer.Models.UserRole(userRole.Id, userRole.UserId, userRole.RoleId, userRole.CreatedBy, userRole.CreatedOn, userRole.Version, userRole.ModifiedBy, userRole.ModifiedOn);
+        }
+
+        public User Map(DataAccessLayer.Models.User dbUser)
+        {
+            if (Equals(dbUser, null))
+                return null;
+
+            User user = new User(dbUser.Name, dbUser.Surname, dbUser.Username, dbUser.Password, dbUser.Email, dbUser.Version);
+            user.Id = dbUser.Id;
+            user.Version = dbUser.Version;
+
+            return user;
+        }
+
+        public DataAccessLayer.Models.User Map(User user)
+        {
+            if (Equals(user, null))
+                throw new ArgumentNullException("User", "Valid user is mandatory!");
+
+            return new DataAccessLayer.Models.User(user.Id, user.Name, user.Surname, user.Username, user.Password, user.Email, user.Version);
         }
     }
 }

@@ -13,7 +13,9 @@ namespace Gradebook.BusinessLogicLayer.TestConsole
             //RolesTest.ShowAll();
             //RolesTest.Populate();
             //RolesTest.UpdateAndDelete();
-            RolesTest.ShowAll();
+            //RolesTest.ShowAll();
+            UserRolesTest.Populate();
+            UserRolesTest.ShowAll();
         }
     }
 }
