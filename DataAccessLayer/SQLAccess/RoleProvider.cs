@@ -344,7 +344,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             sqlCommand.ExecuteNonQuery();
 
-            //user.Id = Convert.ToInt32(outputIdParam.Value);
+            user.Id = Convert.ToInt32(outputIdParam.Value);
             user.Version = (byte[])(outputVersionParam.Value);
         }
 
