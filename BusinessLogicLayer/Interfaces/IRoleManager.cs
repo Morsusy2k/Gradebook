@@ -13,6 +13,10 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
         UserRole GetUserRoleById(int id);
         IEnumerable<UserRole> GetAllUserRolesByUserId(int id);
         void AddUserRole(User editor, Role role, User user);
+        void DeleteUserRole(UserRole userRole);
+
+        Role InsertRole(Role role);
+        void DeleteRole(Role role);
 
         Role Map(DataAccessLayer.Models.Role dbuser);
         DataAccessLayer.Models.Role Map(Role user);

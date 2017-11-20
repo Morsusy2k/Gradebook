@@ -59,6 +59,16 @@ namespace Gradebook.BusinessLogicLayer.Managers
             _repository.DeleteUserRole(Map(userRole));
         }
 
+        public Role InsertRole(Role role)
+        {
+            return Map(_repository.InsertRole(Map(role)));
+        }
+
+        public void DeleteRole(Role role)
+        {
+            _repository.DeleteRole(Map(role));
+        }
+
         public Role Map(DataAccessLayer.Models.Role dbRole)
         {
             if (Equals(dbRole, null))
@@ -83,7 +93,7 @@ namespace Gradebook.BusinessLogicLayer.Managers
             if (Equals(dbUserRole, null))
                 return null;
 
-            UserRole userRole = new UserRole(dbUserRole.UserId, dbUserRole.RoleId, dbUserRole.CreatedBy, dbUserRole.CreatedOn, dbUserRole.Version, dbUserRole.ModifiedBy, dbUserRole.ModifiedOn);
+            UserRole userRole = new UserRole(dbUserRole.UserId, dbUserRole.RoleId, dbUserRole.CreatedBy, dbUserRole.CreatedDate, dbUserRole.Version, dbUserRole.ModifiedBy, dbUserRole.ModifiedDate);
             userRole.Id = dbUserRole.Id;
 
             return userRole;
@@ -94,7 +104,7 @@ namespace Gradebook.BusinessLogicLayer.Managers
             if (Equals(userRole, null))
                 throw new ArgumentNullException("userRole", "Valid userRole is mandatory!");
 
-            return new DataAccessLayer.Models.UserRole(userRole.Id, userRole.UserId, userRole.RoleId, userRole.CreatedBy, userRole.CreatedOn, userRole.Version, userRole.ModifiedBy, userRole.ModifiedOn);
+            return new DataAccessLayer.Models.UserRole(userRole.Id, userRole.UserId, userRole.RoleId, userRole.CreatedBy, userRole.CreatedDate, userRole.Version, userRole.ModifiedBy, userRole.ModifiedDate);
         }
 
         public User Map(DataAccessLayer.Models.User dbUser)

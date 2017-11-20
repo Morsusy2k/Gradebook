@@ -19,18 +19,20 @@ namespace Gradebook.BusinessLogicLayer.Tests
             _roleManager.AddUserRole(editor,role,editor);
         }
 
-        public static void ShowAll()
+        public static void ShowAllUsers()
         {
+            Console.WriteLine("\n\n");
             foreach (var user in _userManager.GetAll())
             {
                 IEnumerable<UserRole> roles = _roleManager.GetAllUserRolesByUserId(user.Id);
 
-                Console.WriteLine($"User: {user.Name} {user.Surname}");
-                Console.WriteLine("Roles:");
+                Console.Write($"User: {user.Id} {user.Name} {user.Surname} | ");
+                Console.Write("Roles:");
                 foreach (var userRole in roles)
                 {
-                    Role role = _roleManager.GetById(userRole.Id);
-                    Console.WriteLine($" - {role.Name}");
+                    Role role = _roleManager.GetById(userRole.RoleId);
+                    Console.Write(" - ");
+                    Console.Write($"{role.Name} ");
                 }
                 Console.WriteLine();
             }

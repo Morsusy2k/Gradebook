@@ -1,7 +1,7 @@
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Tests.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Tests.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Interfaces.dll
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Managers.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Managers.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Models.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.DataAccessLayer.Models.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.RepositoryLayer.Interfaces.dll
@@ -9,7 +9,7 @@ C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.RepositoryLayer.Repositories.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.DataAccessLayer.SQLAccess.Providers.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Interfaces.pdb
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Managers.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.BusinessLogicLayer.Managers.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Models.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.DataAccessLayer.Models.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer.Tests\Tests\bin\Debug\Gradebook.RepositoryLayer.Interfaces.pdb

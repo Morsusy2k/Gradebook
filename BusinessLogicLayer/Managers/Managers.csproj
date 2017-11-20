@@ -7,8 +7,8 @@
     <ProjectGuid>{B4240404-4D0A-431E-A77D-196C3BD96CB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Managers</RootNamespace>
-    <AssemblyName>Managers</AssemblyName>
+    <RootNamespace>Gradebook.BusinessLogicLayer.Managers</RootNamespace>
+    <AssemblyName>Gradebook.BusinessLogicLayer.Managers</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,11 +47,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer\Models\Models.csproj">
       <Project>{18babfd5-abc2-41f0-9c16-67a41cdf7b96}</Project>
-      <Name>DataAccessLayer.Models</Name>
+      <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RepositoryLayer\Interfaces\Interfaces.csproj">
       <Project>{b0b8ea75-93b6-416c-928c-0015c532f1d4}</Project>
-      <Name>RepositoryLayer.Interfaces</Name>
+      <Name>Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RepositoryLayer\Repositories\Repositories.csproj">
       <Project>{d1059c17-65dd-4efc-8805-da8d79da688b}</Project>

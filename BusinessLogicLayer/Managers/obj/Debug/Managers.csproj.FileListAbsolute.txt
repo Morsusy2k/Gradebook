@@ -1,5 +1,5 @@
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Managers.dll
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Managers.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.BusinessLogicLayer.Managers.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.BusinessLogicLayer.Managers.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.BusinessLogicLayer.Interfaces.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.DataAccessLayer.Models.dll
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.RepositoryLayer.Interfaces.dll
@@ -16,5 +16,5 @@ C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bi
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\bin\Debug\Gradebook.DataAccessLayer.SQLAccess.Providers.pdb
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Managers.csprojResolveAssemblyReference.cache
 C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Managers.csproj.CoreCompileInputs.cache
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Managers.dll
-C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Managers.pdb
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Gradebook.BusinessLogicLayer.Managers.dll
+C:\Users\Morsus\Documents\GIT\Gradebook\Gradebook\BusinessLogicLayer\Managers\obj\Debug\Gradebook.BusinessLogicLayer.Managers.pdb

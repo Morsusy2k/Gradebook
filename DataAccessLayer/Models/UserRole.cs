@@ -5,18 +5,18 @@ namespace Gradebook.DataAccessLayer.Models
 {
     public class UserRole
     {
-        private DateTime createdOn;
+        private DateTime createdDate;
 
         public UserRole() { }
-        public UserRole(int id,int userId, int roleId, int createdBy, DateTime createdOn, byte[] version, int? modifiedBy, DateTime? modifiedOn)
+        public UserRole(int id,int userId, int roleId, int createdBy, DateTime createdDate, byte[] version, int? modifiedBy, DateTime? modifiedDate)
         {
             Id = id;
             RoleId = roleId;
             UserId = userId;
             CreatedBy = createdBy;
-            CreatedOn = createdOn;
+            CreatedDate = createdDate;
             ModifiedBy = modifiedBy;
-            ModifiedOn = modifiedOn;
+            ModifiedDate = modifiedDate;
             Version = version;
         }
         public int Id { get; set; }
@@ -24,30 +24,30 @@ namespace Gradebook.DataAccessLayer.Models
         public int UserId { get; set; }
         public int CreatedBy { get; set; }
         public int? ModifiedBy { get; set; }
-        public DateTime? ModifiedOn { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public byte[] Version { get; set; }
 
-        public DateTime CreatedOn
+        public DateTime CreatedDate
         {
             get
             {
-                Debug.Assert(createdOn != null);
-                return createdOn;
+                Debug.Assert(createdDate != null);
+                return createdDate;
             }
 
             set
             {
                 if (value == null)
-                    throw new ArgumentNullException("createdOn", "Valid createdOn is mandatory!");
+                    throw new ArgumentNullException("createdDate", "Valid createdDate is mandatory!");
 
-                DateTime oldValue = createdOn;
+                DateTime oldValue = createdDate;
                 try
                 {
-                    createdOn = value;
+                    createdDate = value;
                 }
                 catch
                 {
-                    createdOn = oldValue;
+                    createdDate = oldValue;
                     throw;
                 }
             }

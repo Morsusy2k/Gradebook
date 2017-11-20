@@ -47,7 +47,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer\Models\Models.csproj">
       <Project>{18babfd5-abc2-41f0-9c16-67a41cdf7b96}</Project>
-      <Name>DataAccessLayer.Models</Name>
+      <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Utilities\Common\Common.csproj">
       <Project>{6ce266ec-487d-4365-8099-75ec11a59a4e}</Project>
