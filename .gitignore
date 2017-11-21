@@ -9,3 +9,14 @@
 /BusinessLogicLayer/Models/obj
 /BusinessLogicLayer/Managers/obj
 /BusinessLogicLayer/Interfaces/obj
+/Utilities/Common/bin
+/RepositoryLayer/Repositories/bin
+/RepositoryLayer/Interfaces/bin
+/DataAccessLayer/Test/bin
+/DataAccessLayer/SQLAccess/bin
+/DataAccessLayer/Models/bin
+/BusinessLogicLayer.Tests/Tests/bin
+/BusinessLogicLayer.Tests/TestConsole/bin
+/BusinessLogicLayer/Models/bin
+/BusinessLogicLayer/Managers/bin
+/BusinessLogicLayer/Interfaces/bin
