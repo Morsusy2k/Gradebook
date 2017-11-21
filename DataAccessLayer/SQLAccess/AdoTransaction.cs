@@ -9,10 +9,6 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
         public IDbConnection Connection { get; private set; }
         public IDbTransaction Transaction { get; private set; }
 
-        IDbConnection ITransaction.Connection => throw new System.NotImplementedException();
-
-        IDbTransaction ITransaction.Transaction => throw new System.NotImplementedException();
-
         public AdoTransaction(string connectionString)
         {
             Connection = new SqlConnection(connectionString);
