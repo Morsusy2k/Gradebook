@@ -1,0 +1,11 @@
+/Utilities/Common/obj
+/RepositoryLayer/Repositories/obj
+/RepositoryLayer/Interfaces/obj
+/DataAccessLayer/Test/obj
+/DataAccessLayer/SQLAccess/obj
+/DataAccessLayer/Models/obj
+/BusinessLogicLayer.Tests/Tests/obj
+/BusinessLogicLayer.Tests/TestConsole/obj
+/BusinessLogicLayer/Models/obj
+/BusinessLogicLayer/Managers/obj
+/BusinessLogicLayer/Interfaces/obj
