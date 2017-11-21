@@ -196,12 +196,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels\AppDbContext.cs" />
     <Compile Include="Models\IdentityModels\IdentityModels.cs" />
-    <Compile Include="Models\IdentityModels\LoginModel.cs" />
     <Compile Include="Models\IdentityModels\ManageViewModels.cs" />
-    <Compile Include="Models\IdentityModels\RegisterModel.cs" />
-    <Compile Include="Models\IdentityModels\UserDatabase.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -285,6 +281,10 @@
     <ProjectReference Include="..\..\BusinessLogicLayer\Interfaces\Interfaces.csproj">
       <Project>{fc0cddd3-4eb2-4ae6-afff-804a84aece53}</Project>
       <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BusinessLogicLayer\Managers\Managers.csproj">
+      <Project>{b4240404-4d0a-431e-a77d-196c3bd96cb6}</Project>
+      <Name>Managers</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BusinessLogicLayer\Models\Models.csproj">
       <Project>{2ce11ad7-ee5c-4fec-8ec0-22ce5799c878}</Project>
