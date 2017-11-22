@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Gradebook.BusinessLogicLayer.Models
@@ -26,6 +27,7 @@ namespace Gradebook.BusinessLogicLayer.Models
 
         public int Id { get; set; }
         public byte[] Version { get; set; }
+        public IEnumerable<Role> Roles { get; set; }
 
         public string Name
         {
@@ -152,5 +154,6 @@ namespace Gradebook.BusinessLogicLayer.Models
                 }
             }
         }
+
     }
 }

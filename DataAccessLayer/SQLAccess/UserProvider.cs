@@ -72,6 +72,37 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             return result;
         }
 
+        public User GetUserByCredentials(string username, string password)
+        {
+            User result = null;
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetbyCredentials", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Username", username);
+                    sqlCommand.Parameters.AddWithValue("@Password", password);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<User>(reader);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region [WriteMethods]

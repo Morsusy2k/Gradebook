@@ -1,0 +1,31 @@
+﻿@model WebApplication.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h1>Login</h1>
+@using (Html.BeginForm("Login","Account",FormMethod.Post))
+{
+    <ul>
+        <li>
+            <i class="zmdi zmdi-account"></i>
+            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
+            @Html.ValidationMessageFor(m => m.Username, String.Empty)
+
+        </li>
+        <li>
+            @Html.PasswordFor(m => m.Password, new {placeholder = "Password" })
+            @Html.ValidationMessageFor(m => m.Password, String.Empty)
+            <span class="validationMessage">@Model.ErrorMessage</span>
+        </li>
+        <li>
+            @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember" })
+            <label for="remember">Remember me</label>
+            <span>
+                <input type="submit" value="Login" />
+            </span>
+        </li>
+    </ul>
+}
+

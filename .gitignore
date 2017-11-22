@@ -21,3 +21,5 @@
 /BusinessLogicLayer/Managers/bin
 /BusinessLogicLayer/Interfaces/bin
 /packages
+/WebApplication/bin
+/WebApplication/obj
