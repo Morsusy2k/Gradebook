@@ -6,7 +6,10 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
     public interface IUserManager
     {
         User GetById(int id);
+        User GetByUsername(string username);
+        User GetByCredentials(string email, string password);
         IEnumerable<User> GetAll();
+        IEnumerable<string> GetUserRoles(string username);
 
         User Add(User user);
         User Save(User user);

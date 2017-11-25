@@ -20,6 +20,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetUserById(id);
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return _provider.GetUserByUsername(username);
+        }
+
         public User GetUserByCredentials(string username, string password)
         {
             return _provider.GetUserByCredentials(username, password);
@@ -33,6 +38,11 @@ namespace Gradebook.RepositoryLayer.Repositories
         public User UpdateUser(User user, ITransaction transaction = null)
         {
             return _provider.UpdateUser(user, transaction);
+        }
+
+        public List<string> GetUserRolesByUser(string username)
+        {
+            return _provider.GetUserRolesByUser(username);
         }
 
         public void DeleteUser(User user, ITransaction transaction = null)

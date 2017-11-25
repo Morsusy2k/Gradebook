@@ -1,44 +1,55 @@
 ﻿using Gradebook.PresentationLayer.WebApplication.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Gradebook.BusinessLogicLayer.Interfaces;
+using Gradebook.BusinessLogicLayer.Managers;
 using System.Web;
-using Gradebook.PresentationLayer.WebApplication.Models.ViewModels;
 using System.Web.Security;
+using System;
 
 namespace Gradebook.PresentationLayer.WebApplication.Security
 {
     public static class CustomMembershipProvider
     {
+        private static readonly IUserManager _userManager = new UserManager();
+        private static readonly IRoleManager _roleManager = new RoleManager();
+
         public static bool ValidateUser(string username, string password)
         {
-            //UserModel user = new UserModel();
-            //UserModel userObj = _manager.GetByCredentials(username, Helpers.GetMD5Hash(password));
-            //if (userObj != null)
-            //    return true;
+            UserModel user = new UserModel();
+            UserModel userObj = _userManager.GetByCredentials(username, password);
+            if (userObj != null)
+                return true;
 
-            //return false;
-            return true;
+            return false;
         }
 
         internal static bool IsInRole(string roleName)
         {
-            //foreach (var role in GetRolesForUser(username))
-            //{
-            //    if (role == roleName)
-            //    {
-            //        return true;
-            //    }
-            //}
+            UserModel user = CurrentUser();
 
-            //return false;
+            foreach (var role in _userManager.GetUserRoles(user.Username))
+            {
+                if (role == roleName)
+                {
+                    return true;
+                }
+            }
 
-            return true;
+            return false;
         }
 
         public static UserModel CurrentUser()
         {
-            return new UserModel();
+            var authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                var cookieValue = authCookie.Value;
+                if (!String.IsNullOrWhiteSpace(cookieValue))
+                {
+                    string ticket = FormsAuthentication.Decrypt(cookieValue).Name.ToString();
+                    return _userManager.GetByUsername(ticket);
+                }
+            }
+            return null;
         }
     }
 }

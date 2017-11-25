@@ -71,7 +71,35 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+        public User GetUserByUsername(string username)
+        {
+            User result = null;
 
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetByUsername", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<User>(reader);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
         public User GetUserByCredentials(string username, string password)
         {
             User result = null;
@@ -80,7 +108,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             {
                 sqlConnection.Open();
 
-                using (SqlCommand sqlCommand = new SqlCommand("UserGetbyCredentials", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetByCredentials", sqlConnection))
                 {
                     sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -102,7 +130,35 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+        public List<string> GetUserRolesByUser(string username)
+        {
+            List<string> result = new List<string>();
 
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserRolesGetByUsername", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
         #endregion
 
         #region [WriteMethods]

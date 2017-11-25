@@ -7,7 +7,9 @@ namespace Gradebook.RepositoryLayer.Interfaces
     public interface IUserRepository
     {
         User GetUserById(int id);
+        User GetUserByUsername(string username);
         User GetUserByCredentials(string username, string password);
+        List<string> GetUserRolesByUser(string username);
         List<User> GetAllUsers();
 
         User InsertUser(User user, ITransaction transaction = null);

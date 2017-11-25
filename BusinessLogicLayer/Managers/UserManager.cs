@@ -24,9 +24,19 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.GetUserById(id));
         }
 
+        public User GetByUsername(string username)
+        {
+            return Map(_repository.GetUserByUsername(username));
+        }
+
         public User GetByCredentials(string username, string password)
         {
             return Map(_repository.GetUserByCredentials(username, password));
+        }
+
+        public IEnumerable<string> GetUserRoles(string username)
+        {
+            return _repository.GetUserRolesByUser(username);
         }
 
         public User Add(User user)
