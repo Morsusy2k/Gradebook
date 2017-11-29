@@ -203,12 +203,21 @@ li .dropdown-content-lite a:hover {
     border: none; }
   .content-dopdown .dropdown .btn:active {
     border: none; }
-
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 .main-nav {
   background-color: #F0C06C;
   border: none;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
+  cursor:default;
   -webkit-animation: fromTop 1s ease;
   /* Safari 4+ */
   -moz-animation: fromTop 1s ease;
@@ -218,7 +227,7 @@ li .dropdown-content-lite a:hover {
   animation: fromTop 1s ease;
   /* IE 10+, Fx 29+ */ }
   .main-nav .navbar-brand {
-    font-size: 16px;
+    font-size: 14px;
     color: #000; }
   .main-nav .navbar-nav {
     color: #000; }
@@ -232,6 +241,15 @@ li .dropdown-content-lite a:hover {
     .main-nav .navbar-nav a:focus {
       background-color: #FBD38E; }
 
+.logout-button {
+    display:block;
+    text-align: center;
+    padding: 15px;
+}
+.logout-button:hover {
+    text-decoration: none;
+    color: white !important;
+}
 #nav-lava {
   list-style: none outside none;
   background-color: #293541;
@@ -290,7 +308,7 @@ li .dropdown-content-lite a:hover {
     outline: 0 none; }
 
 #lavalamp {
-  background: url("../img/lavalamp.png") no-repeat scroll 0 0 transparent;
+  background: url("../Content/Img/lavalamp.png") no-repeat scroll 0 0 transparent;
   height: 53px;
   position: fixed;
   left: 51px;

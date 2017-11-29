@@ -1,40 +1,78 @@
 ﻿<!DOCTYPE html>
+
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gradebook</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/main.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top main-nav">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <button type="button" class="navbar-toggle collapsed start-left" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="navbar-brand show-resp start-right noselect"><i class="fa fa-book" aria-hidden="true"></i> GRADEBOOK</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <div class="navbar-header">
 
-    <div class="container body-content">
+                            <div class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> GRADEBOOK</div>
+                        </div>
+                    </div>
+                    <!--end col61-->
+                    @Html.Partial("Menu/_Menu")
+                    <!--end col62-->
+                </div>
+                <!--end div row-->
+            </div>
+            <!--end Container fluid-->
+        </nav>
+        <!--sidebar menu-->
+    </header>
+
+    <div>
+        <ul id="nav-lava">
+            <li>
+                <form method="get" action="/school.html">
+                    <button class="dropbtn-lite"><i class="fa fa-university fa-3x"></i></button>
+                </form>
+            </li>
+            <li>
+                <div class="dropdown-lite">
+                    <button class="dropbtn-lite" onclick="openDrop()"><i class="fa fa-file-text fa-3x"></i></button>
+                    <div id="sideNavDropdown" class="dropdown-content-lite">
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </li>
+            <div id="lavalamp"></div>
+        </ul>
+    </div>
+    <div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js "></script>
+    <script type="text/javascript" src="/Scripts/custom.js"></script>
 </body>
 </html>

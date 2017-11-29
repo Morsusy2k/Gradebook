@@ -1,0 +1,35 @@
+﻿<div class=" col col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <div class="navbar-brand show-md noselect">@AppSettings.AppSettings.SchoolName - GRADEBOOK</div>
+</div>
+<div class="col col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="dropdown dropbtn-top">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> @User.Identity.Name<span class="caret "></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <li>
+                    @using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="logout-button">Log out</a>
+
+                    }
+                </li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { })</li>
+                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { })</li>
+            }
+        </ul>
+    </div>
+</div>

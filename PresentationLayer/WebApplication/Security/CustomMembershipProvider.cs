@@ -22,15 +22,18 @@ namespace Gradebook.PresentationLayer.WebApplication.Security
             return false;
         }
 
-        internal static bool IsInRole(string roleName)
+        public static bool IsInRole(string roleName)
         {
             UserModel user = CurrentUser();
 
-            foreach (var role in _userManager.GetUserRoles(user.Username))
+            if (user != null)
             {
-                if (role == roleName)
+                foreach (var role in _userManager.GetUserRoles(user.Username))
                 {
-                    return true;
+                    if (role == roleName)
+                    {
+                        return true;
+                    }
                 }
             }
 

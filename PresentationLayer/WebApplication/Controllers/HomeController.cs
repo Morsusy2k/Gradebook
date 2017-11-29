@@ -6,8 +6,19 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
 {
     public class HomeController : Controller
     {
-        [CustomAuthorize(Roles.Admin,Roles.Professor)]
+        //[CustomAuthorize(Roles.Admin,Roles.Professor)]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [CustomAuthorize]
+        public ActionResult Admin()
+        {
+            return View();
+        }
+        [CustomAuthorize]
+        public ActionResult Moderator()
         {
             return View();
         }
