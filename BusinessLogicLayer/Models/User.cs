@@ -12,7 +12,6 @@ namespace Gradebook.BusinessLogicLayer.Models
         private string password { get; set; }
         private string email { get; set; }
 
-
         public User() { }
 
         public User(string name, string surname, string username, string password, string email, byte[] version)
@@ -154,6 +153,5 @@ namespace Gradebook.BusinessLogicLayer.Models
                 }
             }
         }
-
     }
 }

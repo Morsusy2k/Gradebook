@@ -12,7 +12,7 @@ namespace Gradebook.BusinessLogicLayer.AdminConsole
         private static void Menu()
         {
             int choice = 0;
-            while (choice != 5)
+            while (choice != 6)
             {
                 Console.Clear();
                 Console.WriteLine(" - Admin Console - ");
@@ -20,7 +20,8 @@ namespace Gradebook.BusinessLogicLayer.AdminConsole
                 Console.WriteLine("[2] List all roles");
                 Console.WriteLine("[3] Add new role");
                 Console.WriteLine("[4] Delete role");
-                Console.WriteLine("[5] Exit");
+                Console.WriteLine("[5] User add role");
+                Console.WriteLine("[6] Exit");
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (char.IsDigit(key.KeyChar))
                 {
@@ -47,6 +48,10 @@ namespace Gradebook.BusinessLogicLayer.AdminConsole
                         break;
                     case 4:
                         RolesTest.DeleteRole();
+                        Wait();
+                        break;
+                    case 5:
+                        UserRolesTest.AddUserRole();
                         Wait();
                         break;
                 }

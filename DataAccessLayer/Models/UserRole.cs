@@ -8,7 +8,7 @@ namespace Gradebook.DataAccessLayer.Models
         private DateTime createdDate;
 
         public UserRole() { }
-        public UserRole(int id,int userId, int roleId, int createdBy, DateTime createdDate, byte[] version, int? modifiedBy, DateTime? modifiedDate)
+        public UserRole(int id,int userId, int roleId, int createdBy, DateTime createdDate, byte[] version, int? modifiedBy = null, DateTime? modifiedDate = null)
         {
             Id = id;
             RoleId = roleId;

@@ -11,7 +11,7 @@ namespace Gradebook.BusinessLogicLayer.Managers
 {
     public class UserManager : IUserManager
     {
-        private readonly IUserRepository _repository = new UserRepository();
+        private readonly IUserInterface _repository = new UserRepository();
         private ITransaction _transaction;
 
         public IEnumerable<User> GetAll()

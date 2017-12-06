@@ -1,16 +1,18 @@
-﻿using Gradebook.BusinessLogicLayer.Interfaces;
-using Gradebook.BusinessLogicLayer.Managers;
-using Gradebook.PresentationLayer.WebApplication.Models.ViewModels;
+﻿using Gradebook.PresentationLayer.WebApplication.Models.ViewModels;
 using Membership = Gradebook.PresentationLayer.WebApplication.Security.CustomMembershipProvider;
-using System;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Gradebook.PresentationLayer.WebApplication.Models;
+using Gradebook.Utilities.Common.Helpers;
+using Gradebook.BusinessLogicLayer.Managers;
+using Gradebook.BusinessLogicLayer.Interfaces;
 
 namespace Gradebook.PresentationLayer.WebApplication.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserManager _userManager = new UserManager();
+
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -26,7 +28,7 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.Username, model.Password))
+                if (Membership.ValidateUser(model.Username,model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
 
@@ -39,13 +41,41 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
             }
 
             return View(model);
-    }
+        }
 
-    [AllowAnonymous]
-    public ActionResult LogOut()
-    {
-        FormsAuthentication.SignOut();
-        return RedirectToAction("Login", "Account", null);
+        [AllowAnonymous]
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account", null);
+        }
+
+        
+        public ActionResult Register()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserModel newUser = new UserModel() {
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Username = model.Username,
+                    Password = Helpers.GetMD5Hash(model.Password),
+                    Email = model.Email
+                };
+                _userManager.Add(newUser);
+                return RedirectToAction("Login", "Account", null);
+            }
+            return View(model);
+        }
     }
-}
 }

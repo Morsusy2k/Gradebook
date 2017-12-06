@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GradebookManager.cs" />
+    <Compile Include="SubjectManager.cs" />
+    <Compile Include="PupilManager.cs" />
+    <Compile Include="PClassManager.cs" />
+    <Compile Include="FieldManager.cs" />
     <Compile Include="RoleManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

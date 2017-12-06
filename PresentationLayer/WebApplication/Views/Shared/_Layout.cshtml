@@ -9,6 +9,8 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet">
     <link href="~/Content/font-awesome.css" rel="stylesheet">
     <link href="~/Content/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
 
 </head>
 <body>
@@ -32,30 +34,26 @@
                     <div class="col col-xs-6 col-sm-4 col-md-4 col-lg-4">
                         <div class="navbar-header">
 
-                            <div class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> GRADEBOOK</div>
+                            <a href="@Url.Action("Index","Home")"><div class="navbar-brand"><i class="fa fa-book fa-3x" aria-hidden="true"></i></div></a>
                         </div>
                     </div>
-                    <!--end col61-->
-                    @Html.Partial("Menu/_Menu")
-                    <!--end col62-->
+                    <div class="container-fluid">
+                        @Html.Partial("Menu/_Menu")
+                    </div>
                 </div>
-                <!--end div row-->
             </div>
-            <!--end Container fluid-->
         </nav>
-        <!--sidebar menu-->
     </header>
 
     <div>
         <ul id="nav-lava">
             <li>
-                <form method="get" action="/school.html">
-                    <button class="dropbtn-lite"><i class="fa fa-university fa-3x"></i></button>
-                </form>
+                <a href="@Url.Action("Index","Home")"><div class="dropbtn-lite"><i class="fa fa-university fa-3x"></i></div></a>
             </li>
+            <li><a href="@Url.Action("Index","Gradebook")"><i class="fa fa-folder-open fa-3x dropbtn-lite"></i></a></li>
             <li>
                 <div class="dropdown-lite">
-                    <button class="dropbtn-lite" onclick="openDrop()"><i class="fa fa-file-text fa-3x"></i></button>
+                    <div class="dropbtn-lite" onclick="openDrop()"><i class="fa fa-file-text fa-3x"></i></div>
                     <div id="sideNavDropdown" class="dropdown-content-lite">
                         <a href="#home">Home</a>
                         <a href="#about">About</a>
@@ -66,7 +64,7 @@
             <div id="lavalamp"></div>
         </ul>
     </div>
-    <div>
+    <div class="content-block">
         @RenderBody()
     </div>
 
@@ -74,5 +72,20 @@
     <script type="text/javascript" src="/Scripts/jquery.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.js "></script>
     <script type="text/javascript" src="/Scripts/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip({
+                    container: 'body'
+                });
+            });
+
+            $('.main-grades-collapse').click(function () {
+                $(this).parent().siblings('.main-grades-more').slideToggle('fast');
+            });
+
+        });
+        
+    </script>
 </body>
 </html>

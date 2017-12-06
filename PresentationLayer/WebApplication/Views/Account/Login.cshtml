@@ -3,28 +3,27 @@
 @{
     ViewBag.Title = "Login";
 }
-<h1>Login</h1>
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
-    <ul>
-        <li>
-            <i class="zmdi zmdi-account"></i>
+<div class="main-form">
+    <div class="col-md-12">
+        <i class="zmdi zmdi-account zmdi-hc-2x"></i>
+        <div class="main-header">Login</div>
+        <hr />
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
             @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
-            @Html.ValidationMessageFor(m => m.Username, String.Empty)
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "main-error" })
 
-        </li>
-        <li>
             @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
-            @Html.ValidationMessageFor(m => m.Password, String.Empty)
-            @Html.ValidationMessage("IncorrectCredentials", "", new { @class = "text-danger" })
-        </li>
-        <li>
-            @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember" })
-            <label for="remember">Remember me</label>
-            <span>
-                <input type="submit" value="Login" />
-            </span>
-        </li>
-    </ul>
-}
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "main-error" })
+            @Html.ValidationMessage("IncorrectCredentials", "", new { @class = "main-error" })
 
+            <div class="main-remember">
+                @Html.CheckBoxFor(m => m.RememberMe, new { @id = "remember" })
+                <label for="remember">Remember me</label>
+            </div>
+            <hr \>
+
+            <input class="btn btn-default btn-block" type="submit" value="Login" />
+        }
+    </div>
+</div>

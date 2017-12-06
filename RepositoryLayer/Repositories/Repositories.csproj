@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GradebookRepository.cs" />
+    <Compile Include="SubjectRepository.cs" />
+    <Compile Include="PupilRepository.cs" />
+    <Compile Include="PClassRepository.cs" />
+    <Compile Include="FieldRepository.cs" />
     <Compile Include="RoleRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

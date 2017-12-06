@@ -6,9 +6,9 @@ using Gradebook.Utilities.Common;
 
 namespace Gradebook.RepositoryLayer.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserInterface
     {
-        private readonly IUserRepository _provider = new UserProvider();
+        private readonly IUserInterface _provider = new UserProvider();
 
         public List<User> GetAllUsers()
         {

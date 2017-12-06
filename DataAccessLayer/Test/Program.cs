@@ -10,7 +10,7 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            IUserRepository _repository = new UserRepository();
+            IUserInterface _repository = new UserRepository();
             List<User> users = _repository.GetAllUsers();
 
             Console.WriteLine("--- User list ---");
@@ -19,7 +19,7 @@ namespace Test
                 Console.WriteLine($"Id:{user.Id}\nName:{user.Name}\nSurname:{user.Surname}\nVersion:{user.Version.GetHashCode()}\n");
             }
 
-            IRoleRepository _roleRepository = new RoleRepository();
+            IRoleInterface _roleRepository = new RoleRepository();
             List<Role> roles = _roleRepository.GetAllRoles();
 
             Console.WriteLine("\n--- Role list ---");

@@ -1,0 +1,20 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.PupilModel
+@using Gradebook.BusinessLogicLayer.Managers
+@using Gradebook.BusinessLogicLayer.Interfaces
+
+@{ 
+    IPClassManager _pclassManager = new PClassManager();
+    PClassModel pclass = _pclassManager.GetById(Model.PClassId);
+
+    IFieldManager _fieldManager = new FieldManager();
+    FieldModel field = _fieldManager.GetById(pclass.FieldOfStudyId);
+
+
+<div class="main-table-row">
+    <div>@Html.DisplayFor(model => Model.Id)</div>
+    <div>@Html.DisplayFor(model => Model.Name)</div>
+    <div>@pclass.Year - @pclass.PClassIndex</div>
+    <div>@field.Name</div>
+    <div class="details-coll"><a href="@Url.Action("Details","Pupil",new { Model.Id })"><i class="zmdi zmdi-file-text zmdi-hc-2x"></i></a></div>
+</div>
+}

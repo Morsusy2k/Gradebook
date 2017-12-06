@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Gradebook.BusinessLogicLayer.Models
 {
     public class UserRole
     {
         public UserRole() { }
-        public UserRole(int userId, int roleId, int createdBy, DateTime createdDate, byte[] version, int? modifiedBy, DateTime? modifiedDate)
+        public UserRole(int userId, int roleId, int createdBy, DateTime createdDate, byte[] version, int? modifiedBy = null, DateTime? modifiedDate = null)
         {
             RoleId = roleId;
             UserId = userId;
@@ -23,9 +22,6 @@ namespace Gradebook.BusinessLogicLayer.Models
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public byte[] Version { get; set; }
-
         public DateTime CreatedDate { get; set; }
-
-
     }
 }

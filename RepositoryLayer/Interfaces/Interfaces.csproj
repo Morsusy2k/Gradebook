@@ -40,8 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRoleRepository.cs" />
-    <Compile Include="IUserRepository.cs" />
+    <Compile Include="IGradebookInterface.cs" />
+    <Compile Include="ISubjectInterface.cs" />
+    <Compile Include="IPupilnterface.cs" />
+    <Compile Include="IPClassInterface.cs" />
+    <Compile Include="IRoleInterface.cs" />
+    <Compile Include="IFieldInterface.cs" />
+    <Compile Include="IUserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

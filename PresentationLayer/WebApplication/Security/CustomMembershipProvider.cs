@@ -4,6 +4,7 @@ using Gradebook.BusinessLogicLayer.Managers;
 using System.Web;
 using System.Web.Security;
 using System;
+using Gradebook.Utilities.Common.Helpers;
 
 namespace Gradebook.PresentationLayer.WebApplication.Security
 {
@@ -15,7 +16,7 @@ namespace Gradebook.PresentationLayer.WebApplication.Security
         public static bool ValidateUser(string username, string password)
         {
             UserModel user = new UserModel();
-            UserModel userObj = _userManager.GetByCredentials(username, password);
+            UserModel userObj = _userManager.GetByCredentials(username, Helpers.GetMD5Hash(password));
             if (userObj != null)
                 return true;
 

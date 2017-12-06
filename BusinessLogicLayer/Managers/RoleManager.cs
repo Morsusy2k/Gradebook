@@ -11,7 +11,7 @@ namespace Gradebook.BusinessLogicLayer.Managers
 {
     public class RoleManager : IRoleManager
     {
-        private readonly IRoleRepository _repository = new RoleRepository();
+        private readonly IRoleInterface _repository = new RoleRepository();
         private ITransaction _transaction;
 
         public IEnumerable<Role> GetAll()

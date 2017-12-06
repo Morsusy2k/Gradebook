@@ -6,9 +6,9 @@ using Gradebook.Utilities.Common;
 
 namespace Gradebook.RepositoryLayer.Repositories
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : IRoleInterface
     {
-        private readonly IRoleRepository _provider = new RoleProvider();
+        private readonly IRoleInterface _provider = new RoleProvider();
 
         public List<Role> GetAllRoles()
         {

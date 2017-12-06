@@ -9,7 +9,7 @@ using Gradebook.Utilities.Common;
 
 namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 {
-    public class UserProvider : IUserRepository
+    public class UserProvider : IUserInterface
     {
         private readonly string _connectionString = AppSettings.ConnectionString;
 

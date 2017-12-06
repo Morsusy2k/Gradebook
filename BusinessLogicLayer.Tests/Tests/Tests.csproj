@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GradebookTest.cs" />
+    <Compile Include="FieldTest.cs" />
+    <Compile Include="PClassTest.cs" />
+    <Compile Include="SubjectTest.cs" />
+    <Compile Include="PupilsTest.cs" />
     <Compile Include="UserRolesTest.cs" />
     <Compile Include="RolesTest.cs" />
     <Compile Include="UsersTest.cs" />

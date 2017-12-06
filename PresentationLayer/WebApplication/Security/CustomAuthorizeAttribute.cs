@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using Membership = Gradebook.PresentationLayer.WebApplication.Security.CustomMembershipProvider;
 
@@ -30,7 +28,11 @@ namespace Gradebook.PresentationLayer.WebApplication.Security
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            filterContext.Result = new HttpUnauthorizedResult();
+            //filterContext.Result = new HttpUnauthorizedResult();
+            filterContext.Result = new RedirectToRouteResult(
+                new System.Web.Routing.RouteValueDictionary {
+                    {"action","Login" },{"controller","Account"}
+                });
         }
     }
 }

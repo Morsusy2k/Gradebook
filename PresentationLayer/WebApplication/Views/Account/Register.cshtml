@@ -1,0 +1,35 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ViewModels.RegisterViewModel
+
+<div class="main-form">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+            <i class="zmdi zmdi-account-add zmdi-hc-2x"></i>
+            <div class="main-header">Register</div>
+            <hr />
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Name" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "main-error" })
+
+            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @placeholder = "Surname" } })
+            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "main-error" })
+
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @placeholder = "Username" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "main-error" })
+
+            @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "main-error" })
+
+            @Html.PasswordFor(model => model.PasswordConfirm, new { placeholder = "Confirm your password" })
+            @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "main-error" })
+
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Email" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "main-error" })
+            <hr \>
+
+            <input type="submit" value="Register" class="btn btn-primary btn-block" />
+            @Html.ActionLink("Back to index", "Index", "Home", null, new { @class = "btn btn-block btn-default" })
+
+        }
+    </div>
+</div>

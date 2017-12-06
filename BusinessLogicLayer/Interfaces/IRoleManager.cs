@@ -18,7 +18,7 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
         Role InsertRole(Role role);
         void DeleteRole(Role role);
 
-        Role Map(DataAccessLayer.Models.Role dbuser);
-        DataAccessLayer.Models.Role Map(Role user);
+        Role Map(DataAccessLayer.Models.Role dbRole);
+        DataAccessLayer.Models.Role Map(Role role);
     }
 }
