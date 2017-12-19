@@ -71,7 +71,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
-        
+
         #endregion
 
         #region [WriteMethods]
@@ -98,6 +98,30 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
                 }
             }
         }
+
+        public void InsertFieldSubject(FieldOfStudy field, Subject subject, int creatorId, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("FieldOfStudyInsertSubject", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    InsertFieldSubjectSqlCommand(sqlCommand, field, subject, creatorId);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("FieldOfStudyInsertSubject", sqlConnection))
+                    {
+                        InsertFieldSubjectSqlCommand(sqlCommand, field, subject, creatorId);
+                    }
+                }
+            }
+        }
+
         public FieldOfStudy UpdateField(FieldOfStudy field, ITransaction transaction = null)
         {
             if (transaction != null)
@@ -143,6 +167,29 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             }
         }
 
+        public void DeleteFieldSubjects(FieldOfStudy field, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("FieldOfStudyDeleteSubjects", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    DeleteFieldSubjectsSqlCommand(sqlCommand, field);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("FieldOfStudyDeleteSubjects", sqlConnection))
+                    {
+                        DeleteFieldSubjectsSqlCommand(sqlCommand, field);
+                    }
+                }
+            }
+        }
+
         public ITransaction CreateNewTransaction()
         {
             return new AdoTransaction(_connectionString);
@@ -173,6 +220,19 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             field.Version = (byte[])(outputVersionParam.Value);
 
             return field;
+        }
+
+        public void InsertFieldSubjectSqlCommand(SqlCommand sqlCommand, FieldOfStudy field, Subject subject, int creatorId)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@FieldId", field.Id);
+            sqlCommand.Parameters.AddWithValue("@SubjectId", subject.Id);
+            sqlCommand.Parameters.AddWithValue("@CreatedBy", creatorId);
+            sqlCommand.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+
+            sqlCommand.ExecuteNonQuery();
+
         }
 
         public FieldOfStudy UpdateFieldSqlCommand(SqlCommand sqlCommand, FieldOfStudy field)
@@ -213,6 +273,21 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             {
                 throw new DBConcurrencyException("The record has been modified by an other user. Please reload the instance before deleting.");
             }
+        }
+
+
+        public void DeleteFieldSubjectsSqlCommand(SqlCommand sqlCommand, FieldOfStudy field)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@FieldId", field.Id);
+
+            int result = sqlCommand.ExecuteNonQuery();
+
+            /*if (result == 0)
+            {
+                throw new DBConcurrencyException("The record has been modified by an other user. Please reload the instance before deleting.");
+            }*/
         }
         #endregion
 

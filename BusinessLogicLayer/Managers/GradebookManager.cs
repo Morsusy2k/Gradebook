@@ -24,6 +24,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.GetGradebookById(id));
         }
 
+        public Gbook GetByClassId(int id)
+        {
+            return Map(_repository.GetGradebookByClassId(id));
+        }
+
         public Gbook Add(Gbook gBook)
         {
             return Map(_repository.InsertGradebook(Map(gBook)));

@@ -14,8 +14,8 @@ namespace Gradebook.BusinessLogicLayer.Tests
             DateTime dt = DateTime.Now;
             var CurrentTimeStamp = BitConverter.GetBytes(dt.Ticks);
 
-            PClass pclass1 = new PClass(95, 1, DateTime.Now, "2012", 5212, 95, DateTime.Now, CurrentTimeStamp);
-            PClass pclass2 = new PClass(95, 1, DateTime.Now, "2013", 5213, 95, DateTime.Now, CurrentTimeStamp);
+            PClass pclass1 = new PClass(95, 1, "2015", "III", 5212, 95, DateTime.Now, CurrentTimeStamp);
+            PClass pclass2 = new PClass(95, 1, "2014", "IV", 5213, 95, DateTime.Now, CurrentTimeStamp);
 
             _pclassManager.Add(pclass1);
             _pclassManager.Add(pclass2);

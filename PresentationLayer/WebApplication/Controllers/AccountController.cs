@@ -2,7 +2,7 @@
 using Membership = Gradebook.PresentationLayer.WebApplication.Security.CustomMembershipProvider;
 using System.Web.Mvc;
 using System.Web.Security;
-using Gradebook.PresentationLayer.WebApplication.Models;
+using Gradebook.PresentationLayer.WebApplication.Models.BasicModels;
 using Gradebook.Utilities.Common.Helpers;
 using Gradebook.BusinessLogicLayer.Managers;
 using Gradebook.BusinessLogicLayer.Interfaces;
@@ -13,8 +13,11 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
     {
         private readonly IUserManager _userManager = new UserManager();
 
-        public ActionResult Login()
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
@@ -24,15 +27,14 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel model, string returnUrl = "")
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (Membership.ValidateUser(model.Username,model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
-
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToLocal(returnUrl);
                 }
                 else
                 {
@@ -76,6 +78,18 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
                 return RedirectToAction("Login", "Account", null);
             }
             return View(model);
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

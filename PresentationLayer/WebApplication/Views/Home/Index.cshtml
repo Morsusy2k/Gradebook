@@ -1,31 +1,16 @@
-﻿@*{
-        ViewBag.Title = "Index";
-    }
-    @Html.Raw(User.Identity.Name);
-    @Html.Raw(User.Identity.IsAuthenticated.ToString());
-    @if (Membership.IsInRole("Moderator"))
-    {
-        @Html.Raw("Moderator");
-    }
-    else
-    {
-        @Html.Raw("Nope");
-    }
-        <h2>Index</h2>
-
-*@
-
-@model IEnumerable<Gradebook.PresentationLayer.WebApplication.Models.PupilModel>
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PupilModel>
+@using PagedList
+@using PagedList.Mvc
 
 <div class="main-filter noselect">
     <div class="float-right">
-        <form method="get" action="@Url.Action("Index", "Home")">
+        
             <input type="text" name="search" id="search" class="nomargin" placeholder="Search..." /><button type="submit" class="main-search-button nomargin"><i class="zmdi zmdi-search"></i></button>
-        </form>
+
     </div>
-    <a href="#"><div class="main-filter-option float-right"  data-toggle="tooltip" data-placement="bottom" title="Sort by class or grade">CLASS/GRADE <span class="caret"></span></div></a>
-    <a href="#"><div class="main-filter-option float-right"  data-toggle="tooltip" data-placement="bottom" title="Sort by year">YEAR <span class="caret"></span></div></a>
-    <a href="#"><div class="main-filter-option float-right"  data-toggle="tooltip" data-placement="bottom" title="Sort by field of study">FIELD OF STUDY <span class="caret"></span></div></a>
+    <a href="#"><div class="main-filter-option float-right">CLASS/GRADE <span class="caret"></span></div></a>
+    <a href="#"><div class="main-filter-option float-right">YEAR <span class="caret"></span></div></a>
+    <a href="#"><div class="main-filter-option float-right">FIELD OF STUDY <span class="caret"></span></div></a>
 </div>
 <div class="main-table-container">
     <div class="main-table-header">
@@ -39,4 +24,8 @@
     {
         Html.RenderPartial("Partial/_PartialPupil", item);
     }
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
 </div>

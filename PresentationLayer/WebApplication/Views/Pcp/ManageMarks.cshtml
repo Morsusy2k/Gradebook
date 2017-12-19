@@ -1,0 +1,43 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ComplexModels.MarksDetailsModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{ 
+    IMarkManager _gradeManager = new MarkManager();
+    IEnumerable<MarkModel> grades = _gradeManager.GetByMarksId(Model.Marks.Id).Select(x => (MarkModel)x);
+}
+
+<div class="main-class-info">
+    <div>@Model.Pupil.Name</div>
+    <div>@Model.Subject.Name</div>
+    <div>@Model.PClass.ClassName</div>
+    <div>(@Model.Professor.FullName)</div>
+    @if (Request.UrlReferrer != null)
+    {
+        <a onclick="history.go(-1); return false;" href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+    }
+    else
+    {
+        <a href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+    }
+</div>
+
+<div class="main-table-container">
+    <div class="main-table-row main-table-subheader">
+        <div>ID</div>
+        <div>Grade</div>
+        <div>Type</div>
+        <div>Important</div>
+        <div>Final</div>
+        <div>Created on</div>
+        <div>Created by</div>
+        <div class="details-coll">Actions</div>
+    </div>
+    @foreach (MarkModel grade in grades)
+    {
+        Html.RenderPartial("Partial/_PartialMarks", grade);
+    }
+    @Html.Partial("Partial/_AddMark", new MarkModel() { MarksId = Model.Marks.Id })
+</div>
+<br>
+@Html.Partial("Partial/_PartialFinalGrade", Model.Marks)

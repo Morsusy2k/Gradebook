@@ -1,0 +1,28 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.SubjectLessonModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IGradebookManager _gradebookManager = new GradebookManager();
+    IEnumerable<GbookModel> gradebooks = _gradebookManager.GetAll().Select(x => (GbookModel)x);
+    var gradebookList = new SelectList(gradebooks, "Id", "ClassNameAndField");
+
+    ISubjectManager _subjectManager = new SubjectManager();
+    IEnumerable <SubjectModel> subjects = _subjectManager.GetAll().Select(x => (SubjectModel)x);
+    var subjectsList = new SelectList(subjects, "Id", "Name");
+}
+
+@using (Html.BeginForm("AddLesson", "Pcp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    <div></div>
+    <div class="main-table-gradebook">@Html.DropDownListFor(model => Model.GradebookId, gradebookList)</div>
+    <div class="main-table-subject">@Html.DropDownListFor(model => Model.SubjectId, subjectsList)</div>
+    <div>@Html.EditorFor(model => Model.LessonTheme)</div>
+    <div class="main-table-date">@Html.EditorFor(model => Model.Date)</div>
+    <div class="main-table-time">@Html.EditorFor(model => Model.TimeOfLesson)</div>
+    <div></div>
+    <div class="details-coll">
+        <button type="submit"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+    </div>
+}

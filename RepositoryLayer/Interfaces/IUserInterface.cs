@@ -11,6 +11,7 @@ namespace Gradebook.RepositoryLayer.Interfaces
         User GetUserByCredentials(string username, string password);
         List<string> GetUserRolesByUser(string username);
         List<User> GetAllUsers();
+        List<User> GetAllProfessors();
 
         User InsertUser(User user, ITransaction transaction = null);
         User UpdateUser(User user, ITransaction transaction = null);

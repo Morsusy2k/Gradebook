@@ -7,6 +7,7 @@ namespace Gradebook.RepositoryLayer.Interfaces
     public interface IGradebookInterface
     {
         Gbook GetGradebookById(int id);
+        Gbook GetGradebookByClassId(int id);
         List<Gbook> GetAllGradebooks();
 
         Gbook InsertGradebook(Gbook gradebook, ITransaction transaction = null);

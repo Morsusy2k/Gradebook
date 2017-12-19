@@ -1,0 +1,33 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.FieldModel
+
+@using (Html.BeginForm("EditFieldSubjects", "Acp", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="main-class-info">
+        <div>@Html.HiddenFor(model => Model.Id) @Html.DisplayFor(model => Model.Name) subjects</div>
+        @if (Request.UrlReferrer != null)
+        {
+            <a onclick="history.go(-1); return false;" href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        }
+        else
+        {
+            <a href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        }
+    </div>
+    <div class="main-table-container">
+
+        @foreach (SubjectModel sub in Model.SubjectList)
+        {
+            <div class="main-table-row">
+                <div style="width:50%;">
+                    @sub.Name.ToString()
+                </div>
+                <div>
+                    @Html.CheckBox(sub.Id.ToString(), sub.IsChecked, new { @class = "main-subject-cbox" })
+                </div>
+            </div>
+        }
+    </div>
+    @Html.HiddenFor(model => Model.SubjectString)
+    <button class="btn btn-block btn-primary">Save</button>
+}

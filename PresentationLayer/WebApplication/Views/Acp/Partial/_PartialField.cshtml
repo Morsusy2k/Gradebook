@@ -1,0 +1,18 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.FieldModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+
+@using (Html.BeginForm("SaveField", "Acp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.Version)
+    <div>@Html.DisplayFor(model => Model.Id)</div>
+    <div>@Html.EditorFor(model => Model.Name)</div>
+    <div class="details-coll">
+        <button type="submit"><i class="zmdi zmdi-edit zmdi-hc-2x"></i></button>
+        <a href="@Url.Action("EditFieldSubjects", "Acp", new { pid = Model.Id })"><i class="zmdi zmdi-check-circle-u zmdi-hc-2x"></i></a>
+        <a class="delete-button" href="@Url.Action("DeleteField", "Acp", new { pid = Model.Id })"><i class="zmdi zmdi-delete zmdi-hc-2x"></i></a>
+    </div>
+}

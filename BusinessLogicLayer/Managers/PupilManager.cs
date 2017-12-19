@@ -24,6 +24,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.GetPupilById(id));
         }
 
+        public IEnumerable<Pupil> GetByClassId(int id)
+        {
+            return _repository.GetPupilsByClassId(id).Select(x => Map(x));
+        }
+
         public Pupil Add(Pupil pupil)
         {
             return Map(_repository.InsertPupil(Map(pupil)));
@@ -44,11 +49,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
             if (Equals(dbPupil, null))
                 return null;
 
-            Pupil field = new Pupil(dbPupil.PClassId, dbPupil.Name, dbPupil.CreatedBy, dbPupil.CreatedDate, dbPupil.Version, dbPupil.ModifiedDate, dbPupil.ModifiedBy);
-            field.Id = dbPupil.Id;
-            field.Version = dbPupil.Version;
+            Pupil pupil = new Pupil(dbPupil.PClassId, dbPupil.Name, dbPupil.CreatedBy, dbPupil.CreatedDate, dbPupil.Version, dbPupil.ModifiedDate, dbPupil.ModifiedBy);
+            pupil.Id = dbPupil.Id;
+            pupil.Version = dbPupil.Version;
 
-            return field;
+            return pupil;
         }
 
         public DataAccessLayer.Models.Pupil Map(Pupil pupil)

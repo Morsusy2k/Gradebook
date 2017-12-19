@@ -85,16 +85,6 @@
 @media (min-width: 768px) and (max-width: 922px) {
   .show-md {
     font-size: 10px !important; } }
-/* za telefon odraditi horizontalni menu
-@media (max-width:400px) {
-    ul#nav-lava {
-        width: 100%;
-        height: 70px;
-        top: 50px;
-        line-height: 0;
-    }
-}
-*/
 hr{
     margin-bottom:5px;
     margin-top:5px;
@@ -259,12 +249,6 @@ li .dropdown-content-lite a:hover {
   top: 0;
   left: 0;
   overflow-x: hidden;
-  transition: 0.5s;
-  -webkit-animation: fromLeft 1s ease;
-  -moz-animation: fromLeft 1s ease;
-  -o-animation: fromLeft 1s ease;
-  animation: fromLeft 1s ease;
-
 }
   #nav-lava li {
     float: left;
@@ -282,47 +266,27 @@ li .dropdown-content-lite a:hover {
       color: #fff;
       background-color: #48637E;
       outline: 0 none; }
-    #nav-lava li:nth-of-type(1):hover ~ #lavalamp {
-      top: 60px; }
-    #nav-lava li:nth-of-type(2):hover ~ #lavalamp {
-      top: 113px; }
-    #nav-lava li:nth-of-type(3):hover ~ #lavalamp {
-      top: 166px; }
-    #nav-lava li:nth-of-type(4):hover ~ #lavalamp {
-      top: 221px; }
-    #nav-lava li:nth-of-type(5):hover ~ #lavalamp {
-      top: 276px; }
-  #nav-lava a:focus {
-    outline: 0 none; }
-  #nav-lava a:hover {
-    outline: 0 none; }
-  #nav-lava a:active {
-    outline: 0 none; }
 
 #lavalamp {
-  background: url("../Content/Img/lavalamp.png") no-repeat scroll 0 0 transparent;
-  height: 53px;
-  position: fixed;
-  left: 51px;
-  top: 60px;
-  width: 21px;
-  -moz-transition: all 300ms ease;
-  -ms-transition: all 300ms ease;
-  -o-transition: all 300ms ease;
-  -webkit-transition: all 300ms ease;
-  transition: all 300ms ease;
-  -webkit-animation: fadein 3s ease-in-out;
-  -moz-animation: fadein 3s ease-in-out;
-  -o-animation: fadein 3s ease-in-out;
-  animation: fadein 3s ease-in-out;}
-  #lavalamp:hover {
-    -moz-transition-duration: 2s;
-    -ms-transition-duration: 2s;
-    -o-transition-duration: 2s;
-    -webkit-transition-duration: 2s;
-    transition-duration: 2s; }
+    background: url("../Content/Img/lavalamp.png") no-repeat scroll 0 0 transparent;
+    height: 60px;
+    position: fixed;
+    display: none;
+    left: 51px;
+    top: 60px;
+    width: 21px;
+}
 
-/* - */
+.lavalamp-object {
+    background-color: none;
+    pointer-events: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    background-image: url("../Content/Img/lavalamp2.png");
+    background-repeat:no-repeat;
+    background-position:right;
+}
 .main-form {
     color: #293541;
     width: 400px;
@@ -336,6 +300,7 @@ li .dropdown-content-lite a:hover {
     background-color: #f7f7f7;
     border-color: #ccc;
 }
+
 .main-header {
     display: inline;
     font-size: 30px;
@@ -428,12 +393,6 @@ li .dropdown-content-lite a:hover {
     margin:0;
     padding:0;
 }
-.tooltip-inner{
-    background-color: #293541;
-}
-.tooltip.bottom .tooltip-arrow {
-    border-bottom-color: #293541;
-}
 .zmdi {
     vertical-align: middle;
 }
@@ -484,7 +443,7 @@ li .dropdown-content-lite a:hover {
 .main-table-row:hover {
     background-color: #f0c06c;
 }
-    .main-table-row div {
+.main-table-row div {
     display: table-cell;
     padding-left: 20px;
     border: 0;
@@ -497,7 +456,7 @@ li .dropdown-content-lite a:hover {
 }
 
 .details-coll{
-    width:10% !important;
+    width:15% !important;
 }
 
 .main-details-info {
@@ -558,9 +517,8 @@ li .dropdown-content-lite a:hover {
     color: #48637E;
 }
 .main-grades-more {
-    display:none;
+    display: none;
     width: 100%;
-    height: 100px;
     background-color: white;
     border-width: 1px;
     border-style: solid;
@@ -568,4 +526,300 @@ li .dropdown-content-lite a:hover {
     border-top: 0;
     border-bottom-width: 3px;
     background-color: #e4e4e4;
+    overflow:hidden;
+}
+.main-mark-container{
+    width:30%;
+    text-align:center;
+    float:left;
+    margin:10px;
+    
+}
+.main-mark i{
+    color:#999;
+}
+.mark-important {
+    color: #bd48e4;
+}
+.mark-final{
+    color:red;
+}
+.mark-final-indicator{
+    display:none;
+}
+.mark-separator {
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-style: solid;
+    border-color: white;
+    margin-top:5px;
+    padding-top:5px;
+}
+.mark-separator:before {
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-style: solid;
+    border-color: #ccc;
+    width: 100%;
+    height: 1px;
+    margin-top: -5px;
+    display: block;
+    content: "";
+}
+.mark-type-separator {
+    float:left;
+    height:80%;
+    width:1px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
+    border-color: white;
+    margin-top:10px;
+}
+.mark-type-separator:before {
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 1px;
+    border-left-width: 0px;
+    border-style: solid;
+    border-color: #ccc;
+    width: 2px;
+    height: 100%;
+    display: block;
+    content: "";
+}
+.mark-type-separator:last-child{
+    display:none;
+}
+
+.main-class-info {
+    width: 100%;
+    height: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    background-color: #48637e;
+    color: white;
+    margin-bottom:2px;
+}
+.main-class-info div{
+    float:left;
+    margin-left:30px;
+}
+
+.main-table-subheader{
+    background-color:#ccc;
+}
+.main-table-subheader:hover{
+    background-color:#ccc;
+}
+
+.details-coll a, .details-coll button{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.main-form-row input, .main-form-row button, .main-form-row a {
+    background: none;
+    border: 0;
+    float: left;
+    outline:0;
+}
+.main-form-row button, .main-form-row a {
+    color: #337ab7;
+}
+.main-form-row button:hover, .main-form-row a:hover {
+    color: #293541;
+}
+.main-form-row select {
+    background: none;
+    border: 0;
+}
+.main-form-row {
+    width: 100%;
+    display: table-row;
+    height: 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #293541;
+    background-color: #f7f7f7;
+    color: #293541;
+    cursor: default;
+    transition: background-color 0.3s;
+}
+.main-form-row div {
+    display: table-cell;
+    padding-left: 20px;
+    border: 0;
+    border-right-width: 1px;
+    border-style: solid;
+    border-color: #293541;
+    vertical-align:middle;
+}
+
+.main-form-row .main-lessontheme {
+    clear: both;
+    float: none;
+    display: block !important;
+}
+
+.main-form-row:hover {
+    background-color: #f0c06c;
+}
+.main-form-input input{
+    border-bottom-width:1px;
+    border-style:solid;
+    border-color:#888;
+}
+.main-form-row input[type="text"]{
+    width:95%;
+}
+.main-warning {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #F0C06C;
+    margin-bottom:20px;
+}
+.main-success {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #9ad481;
+    margin-bottom: 20px;
+}
+
+.main-subject-cbox {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+    top: -7px;
+}
+.main-newpupil-name {
+    background: none;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #888;
+    width:90%;
+    height:30px;
+    margin-top:15px;
+    margin-bottom:15px;
+    float: left;
+    outline: 0;
+}
+.main-id{
+    width:4%;
+}
+.main-professor{
+    width:15%;
+}
+.main-field{
+    width:20%;
+}
+.main-generation{
+    width:10%;
+}
+.main-generation input {
+    width: 150px !important;
+    text-align: center;
+}
+.main-yeargrade {
+    width: 6%;
+}
+.main-yeargrade input[type="text"] {
+    width: 20px !important;
+    float: left;
+    text-align: center;
+}
+.main-yeargrade input[type="number"] {
+    width: 35px !important;
+    float: left;
+    text-align: center;
+}
+.main-startend{
+    width:15%;
+}
+.main-startend input {
+    width: 150px !important;
+    float: left;
+    text-align: center;
+}
+.main-date-label{
+    clear:both;
+    float:left;
+    margin-right:10px;
+}
+.main-15p{
+    width:15%;
+}
+.main-pagging {
+    width: 100%;
+    background-color: #d5d5d5;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    vertical-align:middle;
+}
+.main-pagging-ul {
+    line-height: 50px;
+    margin: 0;
+}
+.main-pagging-ul li{
+    display:inline;
+}
+.main-pagging-ul li a {
+    padding: 10px;
+    padding-left:20px;
+    padding-right:20px;
+    color:black;
+    font-size:18px;
+}
+.main-pagging-ul li a:hover{
+    background-color:#ccc;
+}
+.main-pagging-ul li.active{
+    cursor:default;
+}
+.main-mark-add-container{
+    clear:both;
+    text-align:center;
+    width:100%;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.main-table-gradebook, .main-table-gradebook select{
+    width:60px !important;
+}
+.main-table-subject{
+    width:15% !important;
+}
+.main-table-subject select {
+    width: 96% !important;
+}
+.main-table-date{
+    width:180px;
+}
+.main-table-date input{
+    width:150px;
+}
+.main-table-time{
+    width:6% !important;
+}
+.main-table-time input{
+    width:60px;
 }

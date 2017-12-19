@@ -1,0 +1,14 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PupilModel
+@using Gradebook.BusinessLogicLayer.Managers
+@using Gradebook.BusinessLogicLayer.Interfaces
+    @{
+        IMarkManager _markManager = new MarkManager();
+        decimal averageGrade = _markManager.GetAverageByPupilId(Model.Id);
+
+    }
+    <div class="main-table-row">
+        <div>@Model.Id</div>
+        <div>@Model.Name</div>
+        <div>@averageGrade.ToString("0.##")</div>
+        <div class="details-coll"><a href="@Url.Action("Details","Pupil",new { pid = Model.Id })"><i class="zmdi zmdi-file-text zmdi-hc-2x"></i></a></div>
+    </div>

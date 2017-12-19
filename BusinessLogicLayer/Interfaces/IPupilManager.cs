@@ -7,6 +7,7 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
     {
         Pupil GetById(int id);
         IEnumerable<Pupil> GetAll();
+        IEnumerable<Pupil> GetByClassId(int id);
 
         Pupil Add(Pupil pupil);
         Pupil Save(Pupil pupil);

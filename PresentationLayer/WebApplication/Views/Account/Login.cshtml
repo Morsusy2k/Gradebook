@@ -1,16 +1,13 @@
 ﻿@model Gradebook.PresentationLayer.WebApplication.Models.ViewModels.LoginViewModel
 
-@{
-    ViewBag.Title = "Login";
-}
 <div class="main-form">
     <div class="col-md-12">
         <i class="zmdi zmdi-account zmdi-hc-2x"></i>
         <div class="main-header">Login</div>
         <hr />
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-            {
-            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", autofocus = "autofocus" })
             @Html.ValidationMessageFor(m => m.Username, "", new { @class = "main-error" })
 
             @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })

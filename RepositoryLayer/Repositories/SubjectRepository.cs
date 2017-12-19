@@ -20,6 +20,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetSubjectById(id);
         }
 
+        public List<Subject> GetSubjectsByFieldId(int id)
+        {
+            return _provider.GetSubjectsByFieldId(id);
+        }
+
         public Subject InsertSubject(Subject subject, ITransaction transaction = null)
         {
             return _provider.InsertSubject(subject, transaction);

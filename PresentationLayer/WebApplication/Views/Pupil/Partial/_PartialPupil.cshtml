@@ -1,0 +1,66 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ComplexModels.MarksDetailsModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IUserManager _userManager = new UserManager();
+    IMarkManager _markManager = new MarkManager();
+}
+<div class="main-collapse">
+    <div class="main-grades-row">
+        <div class="main-grades-subject">@Model.Subject.Name (@Model.Professor.Name @Model.Professor.Surname)</div>
+        <div class="main-grades-collapse"><i class="zmdi zmdi-plus-square zmdi-hc-2x"></i></div>
+        <div class="float-right"><a href="@Url.Action("ManageMarks","Pcp",new { subject = Model.Subject.Id, pupil = Model.Pupil.Id })"><i class="fa fa-line-chart" aria-hidden="true"></i></a></div>
+        <div class="main-grades-grade">
+            Estimated grade: @if (Model.Marks != null && Model.Marks.FinalMark != null)
+            {@Model.Marks.FinalMark }
+            else
+            { @Html.Raw("N/A");
+            }
+        </div>
+    </div>
+    <div class="main-grades-more">
+        @if (Model.Marks != null)
+        {
+            IEnumerable<String> Types = _markManager.GetMarkTypesByMarksId(Model.Marks.Id);
+            foreach (String type in Types)
+            {
+                <div class="main-mark-container">
+                    @type
+                    @foreach (var mark in Model.Grades)
+                    {
+                        if (mark.Type == type)
+                        {
+                            <div class='main-mark'>
+                                @{
+                                    UserModel creator = _userManager.GetById(mark.CreatedBy);
+
+                                    if ((bool)mark.Important)
+                                    {
+                                        <b class="mark-important">@mark.Grade</b>
+                                    }
+                                    else if ((bool)mark.Final)
+                                    {
+                                        <b class="mark-final">@mark.Grade</b>
+                                    }
+                                    else
+                                    {
+                                        <b>@mark.Grade</b>
+                                    }
+                                }
+                                <i>
+                                    @Html.Raw("Created by:")
+
+                                    @creator.Name @creator.Surname
+
+                                    @Html.DisplayFor(model => mark.CreatedDate)
+                                </i>
+                            </div>
+                        }
+                     }
+                </div>
+                <div class="mark-type-separator"></div>
+            }
+         }
+    </div>
+</div>

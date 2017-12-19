@@ -20,6 +20,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetPupilById(id);
         }
 
+        public List<Pupil> GetPupilsByClassId(int id)
+        {
+            return _provider.GetPupilsByClassId(id);
+        }
+
         public Pupil InsertPupil(Pupil pupil, ITransaction transaction = null)
         {
             return _provider.InsertPupil(pupil, transaction);

@@ -1,45 +1,42 @@
-﻿@model Gradebook.PresentationLayer.WebApplication.Models.PupilModel
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ComplexModels.PupilDetailsModel
+@using Gradebook.PresentationLayer.WebApplication.Models.BasicModels
+@using Gradebook.PresentationLayer.WebApplication.Models.ComplexModels
 @using Gradebook.BusinessLogicLayer.Managers
 @using Gradebook.BusinessLogicLayer.Interfaces
 
 <div class="main-details-info">
     @{
+        IUserManager _userManager = new UserManager();
+        IMarkManager _markManager = new MarkManager();
+        IMarksManager _marksManager = new MarksManager();
 
-        IPClassManager _pclassManager = new PClassManager();
-        PClassModel pclass = _pclassManager.GetById(Model.PClassId);
+        UserModel teacher = _userManager.GetById(Model.Pclass.UserId);
 
-
-
-        IFieldManager _fieldManager = new FieldManager();
-        FieldModel field = _fieldManager.GetById(pclass.FieldOfStudyId);
-        <div>@Model.Name </div>
-        <div>@pclass.Year - @pclass.PClassIndex</div>
-        <div>@field.Name</div>
-        <div>(Homeroom teacher)</div>
-        <a href="@Url.Action("Index","Home")"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        <div>@Model.Pupil.Name </div>
+        <div>@Model.Pclass.ClassName</div>
+        <div>(@teacher.FullName)</div>
+        if (Request.UrlReferrer != null)
+        {
+            <a onclick="history.go(-1); return false;" href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        }
+        else
+        {
+            <a href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        }
     }
 </div>
-<div class="main-collapse">
-    <div class="main-grades-row">
-        <div class="main-grades-subject">Name of the subject (professor)</div>
-        <div class="main-grades-collapse"><i class="zmdi zmdi-plus-square zmdi-hc-2x"></i></div>
-        <div class="main-grades-grade">Estimated grade: 5 (3,60)</div>
-    </div>
-    <div class="main-grades-more"></div>
-</div>
-<div class="main-collapse">
-    <div class="main-grades-row">
-        <div class="main-grades-subject">Name of the subject (professor)</div>
-        <div class="main-grades-collapse"><i class="zmdi zmdi-plus-square zmdi-hc-2x"></i></div>
-        <div class="main-grades-grade">Estimated grade: 5 (3,60)</div>
-    </div>
-    <div class="main-grades-more"></div>
-</div>
-<div class="main-collapse">
-    <div class="main-grades-row">
-        <div class="main-grades-subject">Name of the subject (professor)</div>
-        <div class="main-grades-collapse"><i class="zmdi zmdi-plus-square zmdi-hc-2x"></i></div>
-        <div class="main-grades-grade">Estimated grade: 5 (3,60)</div>
-    </div>
-    <div class="main-grades-more"></div>
-</div>
+@foreach (SubjectModel subject in Model.Subjects)
+{
+    MarksDetailsModel details = new MarksDetailsModel();
+    details.Pupil = Model.Pupil;
+    details.Subject = subject;
+    details.Professor = _userManager.GetById(details.Subject.UserId);
+    MarksModel marks = _marksManager.GetByPupilId(Model.Pupil.Id).Select(x => (MarksModel)x).FirstOrDefault(x => x.SubjectId == subject.Id);
+    details.Marks = marks;
+    if (marks != null)
+    {
+        details.Grades = _markManager.GetByMarksId(marks.Id).Select(x => (MarkModel)x);
+    }
+
+    Html.RenderPartial("Partial/_PartialPupil", details);
+}

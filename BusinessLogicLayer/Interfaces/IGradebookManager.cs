@@ -6,6 +6,7 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
     public interface IGradebookManager
     {
         Gbook GetById(int id);
+        Gbook GetByClassId(int id);
         IEnumerable<Gbook> GetAll();
 
         Gbook Add(Gbook gBook);

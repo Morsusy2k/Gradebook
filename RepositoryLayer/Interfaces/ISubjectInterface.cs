@@ -8,6 +8,7 @@ namespace Gradebook.RepositoryLayer.Interfaces
     {
         Subject GetSubjectById(int id);
         List<Subject> GetAllSubjects();
+        List<Subject> GetSubjectsByFieldId(int id);
 
         Subject InsertSubject(Subject subject, ITransaction transaction = null);
         Subject UpdateSubject(Subject subject, ITransaction transaction = null);

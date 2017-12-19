@@ -71,7 +71,37 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
-        
+
+        public Gbook GetGradebookByClassId(int id)
+        {
+            Gbook result = null;
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("GradebookGetByClassId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@ClassId", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result = DBAccessExtensions.MapTableEntityTo<Gbook>(reader);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region [WriteMethods]
@@ -182,6 +212,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
         {
             sqlCommand.CommandType = CommandType.StoredProcedure;
 
+            sqlCommand.Parameters.AddWithValue("@Id", gradebook.Id);
             sqlCommand.Parameters.AddWithValue("@PClassId", gradebook.PClassId);
             sqlCommand.Parameters.AddWithValue("@SchoolYearStart", gradebook.SchoolYearStart);
             sqlCommand.Parameters.AddWithValue("@SchoolYearEnd", gradebook.SchoolYearEnd);

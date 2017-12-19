@@ -1,0 +1,45 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.UserModel
+
+@if (TempData.ContainsKey("RoleSuccess"))
+{<div class="main-success"> @Html.Raw(TempData["RoleSuccess"]) <a href="@Url.Action("ManageUsers","Acp")">Back to manager?</a></div>}
+@if (TempData.ContainsKey("RoleError"))
+{<div class="main-warning"> @Html.Raw(TempData["RoleError"])</div>}
+
+@using (Html.BeginForm("EditUserRole", "Acp", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="main-class-info">
+        <div>@Html.HiddenFor(model => Model.Id) @Html.DisplayFor(model => Model.FullName) (@Html.DisplayFor(model => Model.Username))</div>
+        @if (Request.UrlReferrer != null)
+        {
+            if (Request.UrlReferrer.ToString().Contains("EditUserRole"))
+            {
+                <a href="@Url.Action("ManageUsers","Acp")"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+            }
+            else
+            {
+                <a onclick="history.go(-1); return false;" href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+            }
+        }
+        else
+        {
+            <a href="@Url.Action("ManageUsers","Acp")"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+        }
+    </div>
+    <div class="main-table-container">
+
+        @foreach (RoleModel sub in Model.Roles)
+        {
+            <div class="main-table-row">
+                <div style="width:50%;">
+                    @sub.Name.ToString()
+                </div>
+                <div>
+                    @Html.CheckBox(sub.Id.ToString(), sub.IsChecked, new { @class = "main-subject-cbox" })
+                </div>
+            </div>
+        }
+    </div>
+    @Html.HiddenFor(model => Model.RolesString)
+    <button class="btn btn-block btn-primary">Save</button>
+}

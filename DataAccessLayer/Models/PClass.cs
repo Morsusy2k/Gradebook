@@ -5,7 +5,7 @@ namespace Gradebook.DataAccessLayer.Models
     public class PClass
     {
         public PClass() { }
-        public PClass(int id, int userId, int fieldId, DateTime generation, string year, int pclassIndex, int createdBy, DateTime createdDate, byte[] version, DateTime? modifiedDate = null, int? modifiedBy = null)
+        public PClass(int id, int userId, int fieldId, string generation, string year, int pclassIndex, int createdBy, DateTime createdDate, byte[] version, DateTime? modifiedDate = null, int? modifiedBy = null)
         {
             Id = id;
             UserId = userId;
@@ -23,7 +23,7 @@ namespace Gradebook.DataAccessLayer.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int FieldOfStudyId { get; set; }
-        public DateTime Generation { get; set; }
+        public string Generation { get; set; }
         public string Year { get; set; }
         public int PClassIndex { get; set; }
         public int CreatedBy { get; set; }

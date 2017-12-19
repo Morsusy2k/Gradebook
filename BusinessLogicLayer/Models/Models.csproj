@@ -43,9 +43,12 @@
     <Compile Include="FieldOfStudy.cs" />
     <Compile Include="PClass.cs" />
     <Compile Include="Gbook.cs" />
+    <Compile Include="Marks.cs" />
+    <Compile Include="Mark.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Pupil.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="SubjectLesson.cs" />
     <Compile Include="UserRole.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

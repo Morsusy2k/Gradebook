@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGradebookManager.cs" />
+    <Compile Include="IMarksManager.cs" />
+    <Compile Include="IMarkManager.cs" />
+    <Compile Include="ISubjectLessonManager.cs" />
     <Compile Include="ISubjectManager.cs" />
     <Compile Include="IPupilManager.cs" />
     <Compile Include="IPClassManager.cs" />

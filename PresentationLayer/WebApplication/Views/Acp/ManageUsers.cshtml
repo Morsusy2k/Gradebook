@@ -1,0 +1,21 @@
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.UserModel>
+@using PagedList
+@using PagedList.Mvc
+
+@if (TempData.ContainsKey("UserError"))
+{<div class="main-warning"> @Html.Raw(TempData["UserError"]) </div>}
+<div class="main-table-container">
+    <div class="main-table-header">
+        <div>ID</div>
+        <div>Fullname (Username)</div>
+        <div class="details-coll">Actions</div>
+    </div>
+    @foreach (UserModel user in Model)
+    {
+        Html.RenderPartial("Partial/_PartialUser", user);
+    }
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("ManageUsers", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
+</div>

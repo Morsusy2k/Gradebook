@@ -1,0 +1,29 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ComplexModels.ClassDetailsModel
+
+<div class="main-class-info">
+    <div>@Model.ClassClass.Year - @Model.ClassClass.PClassIndex</div>
+    <div>@Model.ClassField.Name</div>
+    <div>@Html.DisplayFor(model => Model.ClassGradebook.SchoolYearStart) - @Html.DisplayFor(model => Model.ClassGradebook.SchoolYearEnd)</div>
+    <div>(@Model.ClassProfessor.Name @Model.ClassProfessor.Surname)</div>
+    @if (Request.UrlReferrer != null)
+    {
+    <a onclick="history.go(-1); return false;" href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+    }
+    else
+    {
+        <a href="#"><div class="main-back"><i class="zmdi zmdi-arrow-left zmdi-hc-2x"></i></div></a>
+    }
+</div>
+
+<div class="main-table-container">
+    <div class="main-table-row main-table-subheader">
+        <div>ID</div>
+        <div>Full Name</div>
+        <div>Average grade</div>
+        <div class="details-coll">Details</div>
+    </div>
+    @foreach (var item in Model.ClassPupils)
+    {
+        Html.RenderPartial("Partial/_PartialPupil", item);
+    }
+</div>

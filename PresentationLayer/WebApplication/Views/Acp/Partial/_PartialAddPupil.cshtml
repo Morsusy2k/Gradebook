@@ -1,0 +1,25 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PupilModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IPClassManager _classManager = new PClassManager();
+    IEnumerable<PClassModel> classModels = _classManager.GetAll().Select(x => (PClassModel)x);
+    var classList = new SelectList(classModels, "Id", "ClassName");
+}
+
+@using (Html.BeginForm("AddPupil", "Acp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div></div>
+    <div class="main-form-input">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div>@Html.DropDownListFor(x => x.PClassId, classList, new { @class = "main-newpupil-name" })</div>
+    <div class="details-coll">
+        <button type="submit"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+    </div>
+}

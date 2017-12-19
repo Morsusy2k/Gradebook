@@ -48,6 +48,12 @@
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -95,7 +101,49 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -103,13 +151,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\main.css.map" />
     <Content Include="Content\main.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-lava.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery-ui-i18n.js" />
+    <Content Include="Scripts\jquery-ui-i18n.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -121,18 +178,28 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AcpController.cs" />
     <Compile Include="Controllers\GradebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PcpController.cs" />
     <Compile Include="Controllers\PupilController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\FieldModel.cs" />
-    <Compile Include="Models\PClassModel.cs" />
-    <Compile Include="Models\GbookModel.cs" />
-    <Compile Include="Models\RoleModel.cs" />
-    <Compile Include="Models\PupilModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\BasicModels\FieldModel.cs" />
+    <Compile Include="Models\BasicModels\PClassModel.cs" />
+    <Compile Include="Models\BasicModels\GbookModel.cs" />
+    <Compile Include="Models\BasicModels\MarksModel.cs" />
+    <Compile Include="Models\BasicModels\MarkModel.cs" />
+    <Compile Include="Models\BasicModels\SubjectLessonModel.cs" />
+    <Compile Include="Models\BasicModels\SubjectModel.cs" />
+    <Compile Include="Models\BasicModels\RoleModel.cs" />
+    <Compile Include="Models\BasicModels\PupilModel.cs" />
+    <Compile Include="Models\BasicModels\UserModel.cs" />
+    <Compile Include="Models\ComplexModels\ClassDetailsModel.cs" />
+    <Compile Include="Models\ComplexModels\ClassGbookModel.cs" />
+    <Compile Include="Models\ComplexModels\MarksDetailsModel.cs" />
+    <Compile Include="Models\ComplexModels\PupilDetailsModel.cs" />
     <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,15 +214,41 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
-    <Content Include="Views\Home\Moderator.cshtml" />
     <Content Include="Views\Shared\Menu\_Menu.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\Partial\_PartialPupil.cshtml" />
     <Content Include="Views\Pupil\Details.cshtml" />
     <Content Include="Views\Gradebook\Index.cshtml" />
+    <Content Include="Views\Gradebook\Partial\_PartialGradebook.cshtml" />
+    <Content Include="Views\Pupil\Partial\_PartialPupil.cshtml" />
+    <Content Include="Views\Gradebook\Partial\_PartialPupil.cshtml" />
+    <Content Include="Views\Acp\AddClass.cshtml" />
+    <Content Include="Views\Gradebook\Class.cshtml" />
+    <Content Include="Views\Acp\ManageSubjects.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialSubject.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddSubject.cshtml" />
+    <Content Include="Views\Acp\ManageFields.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialField.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddField.cshtml" />
+    <Content Include="Views\Acp\EditFieldSubjects.cshtml" />
+    <Content Include="Views\Pcp\AddPupil.cshtml" />
+    <Content Include="Views\Acp\ManagePupils.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialPupil.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddPupil.cshtml" />
+    <Content Include="Views\Acp\ManageClasses.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialClass.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialAddClass.cshtml" />
+    <Content Include="Views\Acp\ManageUsers.cshtml" />
+    <Content Include="Views\Acp\Partial\_PartialUser.cshtml" />
+    <Content Include="Views\Acp\EditUserRole.cshtml" />
+    <Content Include="Views\Pcp\ManageMarks.cshtml" />
+    <Content Include="Views\Pcp\Partial\_AddMark.cshtml" />
+    <Content Include="Views\Pcp\Partial\_PartialMarks.cshtml" />
+    <Content Include="Views\Pcp\Partial\_PartialFinalGrade.cshtml" />
+    <Content Include="Views\Pcp\ManageLessons.cshtml" />
+    <Content Include="Views\Pcp\Partial\_PartialAddLesson.cshtml" />
+    <Content Include="Views\Pcp\Partial\_PartialLesson.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

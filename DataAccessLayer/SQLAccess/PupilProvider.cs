@@ -71,7 +71,35 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
-        
+        public List<Pupil> GetPupilsByClassId(int id)
+        {
+            List<Pupil> result = new List<Pupil>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("PupilGetByClassId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@PClassId", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<Pupil>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
         #endregion
 
         #region [WriteMethods]

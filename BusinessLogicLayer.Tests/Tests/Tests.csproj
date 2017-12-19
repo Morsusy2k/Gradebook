@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="GradebookTest.cs" />
     <Compile Include="FieldTest.cs" />
+    <Compile Include="MarkTest.cs" />
     <Compile Include="PClassTest.cs" />
+    <Compile Include="MarksTest.cs" />
     <Compile Include="SubjectTest.cs" />
     <Compile Include="PupilsTest.cs" />
     <Compile Include="UserRolesTest.cs" />

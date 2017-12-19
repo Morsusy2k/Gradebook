@@ -24,6 +24,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.GetRoleById(id));
         }
 
+        public IEnumerable<Role> GetAllRolesByUserId(int id)
+        {
+            return _repository.GetAllRolesByUserId(id).Select(x => Map(x));
+        }
+
         public Role Add(Role role)
         {
             return Map(_repository.InsertRole(Map(role)));
@@ -67,6 +72,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
         public void DeleteRole(Role role)
         {
             _repository.DeleteRole(Map(role));
+        }
+
+        public void DeleteUserRolesByUser(User user)
+        {
+            _repository.DeleteUserRolesByUser(Map(user));
         }
 
         public Role Map(DataAccessLayer.Models.Role dbRole)

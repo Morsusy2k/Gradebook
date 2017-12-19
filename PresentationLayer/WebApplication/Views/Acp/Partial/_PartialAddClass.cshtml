@@ -1,0 +1,30 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.ComplexModels.ClassGbookModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+@{ 
+    IUserManager _userManager = new UserManager();
+    IEnumerable<UserModel> userModels = _userManager.GetAll().Select(x => (UserModel)x);
+    var professorList = new SelectList(userModels, "Id", "FullName");
+
+    IFieldManager _fieldManager = new FieldManager();
+    IEnumerable<FieldModel> fieldModels = _fieldManager.GetAll().Select(x => (FieldModel)x);
+    var fieldList = new SelectList(fieldModels, "Id", "Name");
+}
+
+@using (Html.BeginForm("AddClass", "Acp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div></div>
+    <div class="main-professor">@Html.DropDownListFor(x => x.PClass.UserId, professorList, new { @class = "main-newpupil-name" })</div>
+    <div class="main-field">@Html.DropDownListFor(x => x.PClass.FieldOfStudyId, fieldList, new { @class = "main-newpupil-name" })</div>
+    <div class="main-generation">@Html.EditorFor(x => x.PClass.Generation)</div>
+    <div class="main-yeargrade">@Html.EditorFor(model => Model.PClass.Year)<span class="float-left"> - </span>@Html.EditorFor(model => Model.PClass.PClassIndex)</div>
+    <div class="main-startend">
+        <span class="main-date-label">Start </span>@Html.EditorFor(model => Model.Gradebook.SchoolYearStart)
+        <span class="main-date-label">End </span>@Html.EditorFor(model => Model.Gradebook.SchoolYearEnd)
+    </div>
+    <div class="details-coll">
+        <button type="submit"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+    </div>
+}

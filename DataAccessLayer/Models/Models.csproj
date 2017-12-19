@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gbook.cs" />
+    <Compile Include="Marks.cs" />
+    <Compile Include="Mark.cs" />
+    <Compile Include="SubjectLesson.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Pupil.cs" />
     <Compile Include="PClass.cs" />

@@ -6,11 +6,11 @@ namespace Gradebook.BusinessLogicLayer.Models
     public class PClass
     {
         public DateTime createdDate { get; set; }
-        public DateTime generation { get; set; }
+        public string generation { get; set; }
         public string year { get; set; }
 
         public PClass() { }
-        public PClass(int userId, int fieldId, DateTime generation, string year, int pclassIndex, int createdBy, DateTime createdDate, byte[] version, DateTime? modifiedDate = null, int? modifiedBy = null)
+        public PClass(int userId, int fieldId, string generation, string year, int pclassIndex, int createdBy, DateTime createdDate, byte[] version, DateTime? modifiedDate = null, int? modifiedBy = null)
         {
             UserId = userId;
             FieldOfStudyId = fieldId;
@@ -33,11 +33,11 @@ namespace Gradebook.BusinessLogicLayer.Models
         public DateTime? ModifiedDate { get; set; }
         public byte[] Version { get; set; }
 
-        public DateTime Generation
+        public string Generation
         {
             get
             {
-                Debug.Assert(createdDate != null);
+                Debug.Assert(generation != null);
                 return generation;
             }
 
@@ -46,7 +46,7 @@ namespace Gradebook.BusinessLogicLayer.Models
                 if (value == null)
                     throw new ArgumentNullException("generation", "Valid generation is mandatory!");
 
-                DateTime oldValue = generation;
+                string oldValue = generation;
                 try
                 {
                     generation = value;

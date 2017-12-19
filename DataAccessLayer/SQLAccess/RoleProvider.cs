@@ -71,6 +71,35 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+        public List<Role> GetAllRolesByUserId(int id)
+        {
+            List<Role> result = new List<Role>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("RoleGetByUserId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@UserId", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<Role>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
 
         #endregion
 
@@ -321,6 +350,29 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
                 }
             }
         }
+
+        public void DeleteUserRolesByUser(User user, ITransaction transaction = null)
+        {
+            if (transaction != null)
+            {
+                using (var sqlCommand = new SqlCommand("RoleDeleteAllByUserId", (SqlConnection)transaction.Connection, (SqlTransaction)transaction.Transaction))
+                {
+                    DeleteUserRolesByUserSqlCommand(sqlCommand, user);
+                }
+            }
+            else
+            {
+                using (var sqlConnection = new SqlConnection(_connectionString))
+                {
+                    sqlConnection.Open();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("RoleDeleteAllByUserId", sqlConnection))
+                    {
+                        DeleteUserRolesByUserSqlCommand(sqlCommand, user);
+                    }
+                }
+            }
+        }
         #endregion
 
         #region [UserRoleSqlCommandMethods]
@@ -387,6 +439,14 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
             }
         }
 
+        public void DeleteUserRolesByUserSqlCommand(SqlCommand sqlCommand, User user)
+        {
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+
+            int result = sqlCommand.ExecuteNonQuery();
+        }
         #endregion
     }
 }

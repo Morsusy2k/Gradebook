@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GradebookRepository.cs" />
+    <Compile Include="MarksRepository.cs" />
+    <Compile Include="MarkRepository.cs" />
+    <Compile Include="SubjectLessonRepository.cs" />
     <Compile Include="SubjectRepository.cs" />
     <Compile Include="PupilRepository.cs" />
     <Compile Include="PClassRepository.cs" />

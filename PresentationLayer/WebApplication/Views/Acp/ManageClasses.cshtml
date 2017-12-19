@@ -1,0 +1,36 @@
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PClassModel>
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+@using Gradebook.PresentationLayer.WebApplication.Models.ComplexModels
+@using Gradebook.PresentationLayer.WebApplication.Models.BasicModels
+@using PagedList
+@using PagedList.Mvc
+
+@{ 
+    IGradebookManager _gradebookManager = new GradebookManager();
+}
+    @if (TempData.ContainsKey("ClassError"))
+    {<div class="main-warning"> @Html.Raw(TempData["ClassError"]) </div>}
+    <div class="main-table-container">
+        <div class="main-table-header">
+            <div class="main-id">ID</div>
+            <div class="main-professor">Professor name</div>
+            <div class="main-field">Field of study</div>
+            <div class="main-generation">Generation</div>
+            <div class="main-yeargrade">Grade</div>
+            <div class="main-startend">School year</div>
+            <div class="details-coll">Actions</div>
+        </div>
+        @foreach (PClassModel pclass in Model)
+        {
+            ClassGbookModel classGbookModel = new ClassGbookModel();
+            classGbookModel.PClass = pclass;
+            classGbookModel.Gradebook = _gradebookManager.GetByClassId(pclass.Id);
+            Html.RenderPartial("Partial/_PartialClass", classGbookModel);
+        }
+        @Html.Partial("Partial/_PartialAddClass", new ClassGbookModel())
+    </div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("ManageClasses", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
+</div>

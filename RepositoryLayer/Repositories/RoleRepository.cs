@@ -20,6 +20,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetRoleById(id);
         }
 
+        public List<Role> GetAllRolesByUserId(int id)
+        {
+            return _provider.GetAllRolesByUserId(id);
+        }
+
         public Role InsertRole(Role role, ITransaction transaction = null)
         {
             return _provider.InsertRole(role, transaction);
@@ -28,6 +33,11 @@ namespace Gradebook.RepositoryLayer.Repositories
         public void DeleteRole(Role role, ITransaction transaction = null)
         {
             _provider.DeleteRole(role, transaction);
+        }
+
+        public void DeleteUserRolesByUser(User user, ITransaction transaction = null)
+        {
+            _provider.DeleteUserRolesByUser(user);
         }
 
         public List<UserRole> GetAllUserRoles()

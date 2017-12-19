@@ -159,6 +159,33 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
+        public List<User> GetAllProfessors()
+        {
+            List<User> result = new List<User>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("UserGetAllProfessors", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<User>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
         #endregion
 
         #region [WriteMethods]

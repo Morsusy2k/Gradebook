@@ -10,6 +10,7 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
         User GetByCredentials(string email, string password);
         IEnumerable<User> GetAll();
         IEnumerable<string> GetUserRoles(string username);
+        IEnumerable<User> GetAllProfessors();
 
         User Add(User user);
         User Save(User user);

@@ -1,75 +1,30 @@
-﻿@model IEnumerable<Gradebook.PresentationLayer.WebApplication.Models.GbookModel>
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.GbookModel>
+@using PagedList
+@using PagedList.Mvc
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PClassId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SchoolYearStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SchoolYearEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Editable)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PClassId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SchoolYearStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SchoolYearEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Editable)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="main-filter noselect">
+    <div class="float-right">
+        <form method="get" action="@Url.Action("Index", "Home")">
+            <input type="text" name="search" id="search" class="nomargin" placeholder="Search..." /><button type="submit" class="main-search-button nomargin"><i class="zmdi zmdi-search"></i></button>
+        </form>
+    </div>
+    <a href="#"><div class="main-filter-option float-right">CLASS/GRADE <span class="caret"></span></div></a>
+    <a href="#"><div class="main-filter-option float-right">YEAR <span class="caret"></span></div></a>
+    <a href="#"><div class="main-filter-option float-right">FIELD OF STUDY <span class="caret"></span></div></a>
+</div>
+<div class="main-table-container">
+    <div class="main-table-header">
+        <div>ID</div>
+        <div>Year + Grade</div>
+        <div>Field of study</div>
+        <div class="details-coll">Details</div>
+    </div>
+    @foreach (var item in Model)
+    {
+        Html.RenderPartial("Partial/_PartialGradebook", item);
+    }
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
+</div>

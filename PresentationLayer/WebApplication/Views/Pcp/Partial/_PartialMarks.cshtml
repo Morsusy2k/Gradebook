@@ -1,0 +1,21 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.MarkModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{ 
+    IUserManager _userManager = new UserManager();
+    UserModel createdBy = _userManager.GetById(Model.CreatedBy);
+}
+<div class="main-form-row">
+    <div>@Html.DisplayFor(model => Model.Id)</div>
+    <div>@Html.DisplayFor(model => Model.Grade)</div>
+    <div>@Html.DisplayFor(model => Model.Type)</div>
+    <div>@Html.DisplayFor(model => Model.Important)</div>
+    <div>@Html.DisplayFor(model => Model.Final)</div>
+    <div>@Html.DisplayFor(model => Model.CreatedDate)</div>
+    <div>@createdBy.FullName</div>
+    <div class="details-coll">
+        <a class="delete-button" href="@Url.Action("DeleteField", "Acp", new { pid = Model.Id })"><i class="zmdi zmdi-delete zmdi-hc-2x"></i></a>
+    </div>
+
+</div>

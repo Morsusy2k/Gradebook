@@ -185,7 +185,7 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             sqlCommand.Parameters.AddWithValue("@Id", pclass.Id);
             sqlCommand.Parameters.AddWithValue("@UserId", pclass.UserId);
-            sqlCommand.Parameters.AddWithValue("@FieldOfStodyId", pclass.FieldOfStudyId);
+            sqlCommand.Parameters.AddWithValue("@FieldOfStudyId", pclass.FieldOfStudyId);
             sqlCommand.Parameters.AddWithValue("@Generation", pclass.Generation);
             sqlCommand.Parameters.AddWithValue("@Year", pclass.Year);
             sqlCommand.Parameters.AddWithValue("@PClassIndex", pclass.PClassIndex);

@@ -10,8 +10,10 @@ namespace Gradebook.RepositoryLayer.Interfaces
         List<FieldOfStudy> GetAllFields();
 
         FieldOfStudy InsertField(FieldOfStudy field, ITransaction transaction = null);
+        void InsertFieldSubject(FieldOfStudy field, Subject subject, int creatorId, ITransaction transaction = null);
         FieldOfStudy UpdateField(FieldOfStudy field, ITransaction transaction = null);
         void DeleteField(FieldOfStudy field, ITransaction transaction = null);
+        void DeleteFieldSubjects(FieldOfStudy field, ITransaction transaction = null);
 
         ITransaction CreateNewTransaction();
     }

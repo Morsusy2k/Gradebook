@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="AdoTransaction.cs" />
     <Compile Include="GradebookProvider.cs" />
+    <Compile Include="MarksProvider.cs" />
+    <Compile Include="MarkProvider.cs" />
+    <Compile Include="SubjectLessonProvider.cs" />
     <Compile Include="SubjectProvider.cs" />
     <Compile Include="PupilProvider.cs" />
     <Compile Include="PClassProvider.cs" />

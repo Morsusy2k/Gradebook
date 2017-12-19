@@ -27,11 +27,10 @@ namespace Gradebook.PresentationLayer.WebApplication.Security
             return authorize;
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
-        {
-            //filterContext.Result = new HttpUnauthorizedResult();
+        {       
             filterContext.Result = new RedirectToRouteResult(
                 new System.Web.Routing.RouteValueDictionary {
-                    {"action","Login" },{"controller","Account"}
+                    {"action","Login" },{"controller","Account"},{"returnUrl",filterContext.HttpContext.Request.Url.AbsolutePath }
                 });
         }
     }

@@ -1,4 +1,4 @@
-﻿using Gradebook.PresentationLayer.WebApplication.Models;
+﻿using Gradebook.PresentationLayer.WebApplication.Models.BasicModels;
 using Gradebook.BusinessLogicLayer.Interfaces;
 using Gradebook.BusinessLogicLayer.Managers;
 using System.Web;

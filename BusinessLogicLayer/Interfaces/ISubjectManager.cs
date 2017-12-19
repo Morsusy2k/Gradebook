@@ -7,6 +7,7 @@ namespace Gradebook.BusinessLogicLayer.Interfaces
     {
         Subject GetById(int id);
         IEnumerable<Subject> GetAll();
+        IEnumerable<Subject> GetSubjectsByFieldId(int id);
 
         Subject Add(Subject subject);
         Subject Save(Subject subject);

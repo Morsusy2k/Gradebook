@@ -25,6 +25,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.InsertField(field, transaction);
         }
 
+        public void InsertFieldSubject(FieldOfStudy field, Subject subject, int creatorId, ITransaction transaction = null)
+        {
+            _provider.InsertFieldSubject(field, subject, creatorId, transaction);
+        }
+
         public FieldOfStudy UpdateField(FieldOfStudy field, ITransaction transaction = null)
         {
             return _provider.UpdateField(field, transaction);
@@ -33,6 +38,11 @@ namespace Gradebook.RepositoryLayer.Repositories
         public void DeleteField(FieldOfStudy field, ITransaction transaction = null)
         {
             _provider.DeleteField(field, transaction);
+        }
+
+        public void DeleteFieldSubjects(FieldOfStudy field, ITransaction transaction = null)
+        {
+            _provider.DeleteFieldSubjects(field, transaction);
         }
 
         public ITransaction CreateNewTransaction()

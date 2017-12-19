@@ -1,0 +1,23 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PupilModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IPClassManager _classManager = new PClassManager();
+    IEnumerable<PClassModel> classModels = _classManager.GetAll().Select(x => (PClassModel)x);
+    var classList = new SelectList(classModels, "Id", "ClassName");
+}
+
+@using (Html.BeginForm("SavePupil", "Acp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => Model.Id)
+    @Html.HiddenFor(model => Model.Version)
+    <div>@Html.DisplayFor(model => Model.Id)</div>
+    <div>@Html.EditorFor(model => Model.Name)</div>
+    <div>@Html.DropDownListFor(x => x.PClassId, classList, new { @class = "main-newpupil-name" })</div>
+    <div class="details-coll">
+        <button type="submit"><i class="zmdi zmdi-edit zmdi-hc-2x"></i></button>
+        <a class="delete-button" href="@Url.Action("DeletePupil", "Acp", new { pid = Model.Id })"><i class="zmdi zmdi-delete zmdi-hc-2x"></i></a>
+    </div>
+}

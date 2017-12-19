@@ -1,0 +1,10 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.UserModel
+
+<div class="main-form-row">
+    <div>@Html.DisplayFor(model => Model.Id)</div>
+    <div>@Html.DisplayTextFor(model => Model.FullName) (@Html.DisplayTextFor(model => Model.Username))</div>
+    <div class="details-coll">
+        <a href="@Url.Action("EditUserRole", "Acp", new { pid = Model.Id })"><i class="zmdi zmdi-check-circle-u zmdi-hc-2x"></i></a>
+        <a class="delete-button" href="@Url.Action("DeleteUser", "Acp", new { pid = Model.Id })"><i class="main-delete zmdi zmdi-delete zmdi-hc-2x"></i></a>
+    </div>
+</div>

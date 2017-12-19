@@ -24,6 +24,11 @@ namespace Gradebook.BusinessLogicLayer.Managers
             return Map(_repository.GetSubjectById(id));
         }
 
+        public IEnumerable<Subject> GetSubjectsByFieldId(int id)
+        {
+            return _repository.GetSubjectsByFieldId(id).Select(x => Map(x));
+        }
+
         public Subject Add(Subject subject)
         {
             return Map(_repository.InsertSubject(Map(subject)));

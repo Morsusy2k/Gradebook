@@ -1,0 +1,23 @@
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.PupilModel>
+@using PagedList
+@using PagedList.Mvc
+
+@if (TempData.ContainsKey("PupilError"))
+{<div class="main-warning"> @Html.Raw(TempData["PupilError"]) </div>}
+<div class="main-table-container">
+    <div class="main-table-header">
+        <div>ID</div>
+        <div>Name</div>
+        <div>Class</div>
+        <div class="details-coll">Actions</div>
+    </div>
+    @foreach (PupilModel pupil in Model)
+    {
+        Html.RenderPartial("Partial/_PartialPupil", pupil);
+    }
+    @Html.Partial("Partial/_PartialAddPupil", new PupilModel())
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("ManagePupils", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
+</div>

@@ -8,6 +8,7 @@ namespace Gradebook.RepositoryLayer.Interfaces
     {
         Pupil GetPupilById(int id);
         List<Pupil> GetAllPupils();
+        List<Pupil> GetPupilsByClassId(int id);
 
         Pupil InsertPupil(Pupil pupil, ITransaction transaction = null);
         Pupil UpdatePupil(Pupil pupil, ITransaction transaction = null);

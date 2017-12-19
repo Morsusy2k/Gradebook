@@ -1,0 +1,22 @@
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.FieldModel>
+@using PagedList
+@using PagedList.Mvc
+
+@if (TempData.ContainsKey("FieldError"))
+{<div class="main-warning"> @Html.Raw(TempData["FieldError"]) </div>}
+<div class="main-table-container">
+    <div class="main-table-header">
+        <div>ID</div>
+        <div>Field of study name</div>
+        <div class="details-coll">Actions</div>
+    </div>
+    @foreach (FieldModel field in Model)
+    {
+        Html.RenderPartial("Partial/_PartialField", field);
+    }
+    @Html.Partial("Partial/_PartialAddField", new FieldModel())
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("ManageFields", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] { "main-pagging-ul" } })
+</div>

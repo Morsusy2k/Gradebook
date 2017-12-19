@@ -1,0 +1,23 @@
+﻿@model PagedList<Gradebook.PresentationLayer.WebApplication.Models.BasicModels.SubjectModel>
+@using PagedList
+@using PagedList.Mvc
+
+@if (TempData.ContainsKey("SubjectError"))
+{<div class="main-warning"> @Html.Raw(TempData["SubjectError"]) </div>} 
+<div class="main-table-container">
+    <div class="main-table-header">
+        <div>ID</div>
+        <div>Subject name</div>
+        <div>Professor</div>
+        <div class="details-coll">Actions</div>
+    </div>
+    @foreach (SubjectModel subject in Model)
+    {
+        Html.RenderPartial("Partial/_PartialSubject", subject);
+    }
+        @Html.Partial("Partial/_PartialAddSubject", new SubjectModel())
+</div>
+<div class="main-pagging noselect">
+    @Html.PagedListPager(Model, page => Url.Action("ManageSubjects", new { page, pageSize = Model.PageSize }),
+    new PagedListRenderOptions { ContainerDivClasses = new[] { "main-pagging-container" }, UlElementClasses = new[] {"main-pagging-ul"} })
+</div>

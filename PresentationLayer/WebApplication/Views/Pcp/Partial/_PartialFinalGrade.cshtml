@@ -1,0 +1,28 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.MarksModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IUserManager _userManager = new UserManager();
+    UserModel createdBy = _userManager.GetById(Model.CreatedBy);
+}
+
+<div class="main-table-container">
+    @using (Html.BeginForm("EditFinalGrade", "Pcp", FormMethod.Post, new { @class = "main-form-row" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => Model.Id)
+        @Html.HiddenFor(model => Model.PupilId)
+        @Html.HiddenFor(model => Model.SubjectId)
+        @Html.HiddenFor(model => Model.Version)
+        <div>Final mark</div>
+        <div class="main-form-input">@Html.EditorFor(model => Model.FinalMark)</div>
+        <div>@Model.CreatedDate.ToString("dd.MM.yyyy")</div>
+        <div>@createdBy.FullName</div>
+
+        <div class="details-coll">
+            <button type="submit"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+        </div>
+    }
+</div>

@@ -71,7 +71,36 @@ namespace Gradebook.DataAccessLayer.SQLAccess.Providers
 
             return result;
         }
-        
+        public List<Subject> GetSubjectsByFieldId(int id)
+        {
+            List<Subject> result = new List<Subject>();
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                using (SqlCommand sqlCommand = new SqlCommand("SubjectGetByFieldId", sqlConnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.AddWithValue("@FieldId", id);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.HasRows == true)
+                        {
+                            while (reader.Read())
+                            {
+                                result.Add(DBAccessExtensions.MapTableEntityTo<Subject>(reader));
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region [WriteMethods]

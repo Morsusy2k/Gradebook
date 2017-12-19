@@ -1,10 +1,11 @@
-﻿using Gradebook.PresentationLayer.WebApplication.Security;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Gradebook.BusinessLogicLayer.Interfaces;
 using Gradebook.BusinessLogicLayer.Managers;
 using System.Collections.Generic;
-using Gradebook.PresentationLayer.WebApplication.Models;
+using Gradebook.PresentationLayer.WebApplication.Models.BasicModels;
 using System.Linq;
+using PagedList;
+using static Gradebook.Utilities.Common.Constants;
 
 namespace Gradebook.PresentationLayer.WebApplication.Controllers
 {
@@ -12,22 +13,12 @@ namespace Gradebook.PresentationLayer.WebApplication.Controllers
     {
         private static readonly IPupilManager _pupilManager = new PupilManager();
 
-        //[CustomAuthorize(Roles.Admin,Roles.Professor)]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = Display.PageSize)
         {
             IEnumerable<PupilModel> models = _pupilManager.GetAll().Select(x => (PupilModel)x);
-            return View(models);
-        }
 
-        [CustomAuthorize]
-        public ActionResult Admin()
-        {
-            return View();
-        }
-        [CustomAuthorize]
-        public ActionResult Moderator()
-        {
-            return View();
+            PagedList<PupilModel> modelsList = new PagedList<PupilModel>(models, page, pageSize);
+            return View(modelsList);
         }
     }
 }

@@ -8,9 +8,11 @@ namespace Gradebook.RepositoryLayer.Interfaces
     {
         Role GetRoleById(int id);
         List<Role> GetAllRoles();
+        List<Role> GetAllRolesByUserId(int id);
 
         Role InsertRole(Role role, ITransaction transaction = null);
         void DeleteRole(Role role, ITransaction transaction = null);
+        void DeleteUserRolesByUser(User user, ITransaction transaction = null);
 
         List<UserRole> GetAllUserRoles();
         List<UserRole> GetUserRolesByUserId(int id);

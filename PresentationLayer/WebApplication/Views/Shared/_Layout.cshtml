@@ -9,6 +9,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet">
     <link href="~/Content/font-awesome.css" rel="stylesheet">
     <link href="~/Content/main.css" rel="stylesheet">
+    <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 
@@ -47,45 +48,48 @@
 
     <div>
         <ul id="nav-lava">
-            <li>
+            @{
+                var currentController = ViewContext.RouteData.Values["controller"] as string ?? "Home";
+                var currentAction = ViewContext.RouteData.Values["action"] as string ?? "Index";
+                var currentPage = (currentController + "-" + currentAction).ToLower();
+            }
+            <li class="@Html.Raw(currentController == "Home" ? "active" : "")">
                 <a href="@Url.Action("Index","Home")"><div class="dropbtn-lite"><i class="fa fa-university fa-3x"></i></div></a>
             </li>
-            <li><a href="@Url.Action("Index","Gradebook")"><i class="fa fa-folder-open fa-3x dropbtn-lite"></i></a></li>
-            <li>
+            <li class="@Html.Raw(currentController == "Gradebook" ? "active" : "")">
+                <a href="@Url.Action("Index","Gradebook")"><i class="fa fa-folder-open fa-3x dropbtn-lite"></i></a>
+            </li>
+            <li class="@Html.Raw(currentController == "Acp" ? "active" : "")">
                 <div class="dropdown-lite">
-                    <div class="dropbtn-lite" onclick="openDrop()"><i class="fa fa-file-text fa-3x"></i></div>
-                    <div id="sideNavDropdown" class="dropdown-content-lite">
-                        <a href="#home">Home</a>
-                        <a href="#about">About</a>
-                        <a href="#contact">Contact</a>
+                    <div class="dropbtn-lite"><i class="fa fa-cog fa-3x"></i></div>
+                    <div class="dropdown-content-lite">
+                        <a href="@Url.Action("ManageSubjects","Acp")">Subjects</a>
+                        <a href="@Url.Action("ManageFields","Acp")">Fields</a>
+                        <a href="@Url.Action("ManagePupils","Acp")">Pupils</a>
+                        <a href="@Url.Action("ManageClasses","Acp")">Classes</a>
+                        <a href="@Url.Action("ManageUsers","Acp")">Users</a>
                     </div>
                 </div>
             </li>
-            <div id="lavalamp"></div>
+            <li class="@Html.Raw(currentController == "Pcp" ? "active" : "")">
+                <div class="dropdown-lite">
+                    <div class="dropbtn-lite"><i class="fa fa-id-card-o fa-3x"></i></div>
+                    <div class="dropdown-content-lite">
+                        <a href="@Url.Action("AddPupil","Pcp")">Pupil</a>
+                        <a href="@Url.Action("ManageLessons","Pcp")">Lesson</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
     <div class="content-block">
         @RenderBody()
     </div>
 
-
-    <script type="text/javascript" src="/Scripts/jquery.js"></script>
-    <script type="text/javascript" src="/Scripts/bootstrap.js "></script>
-    <script type="text/javascript" src="/Scripts/custom.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip({
-                    container: 'body'
-                });
-            });
-
-            $('.main-grades-collapse').click(function () {
-                $(this).parent().siblings('.main-grades-more').slideToggle('fast');
-            });
-
-        });
-        
-    </script>
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-lava.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js "></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
 </body>
 </html>

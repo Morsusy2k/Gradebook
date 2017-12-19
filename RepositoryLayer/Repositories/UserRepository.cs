@@ -30,6 +30,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetUserByCredentials(username, password);
         }
 
+        public List<User> GetAllProfessors()
+        {
+            return _provider.GetAllProfessors();
+        }
+
         public User InsertUser(User user, ITransaction transaction = null)
         {
             return _provider.InsertUser(user, transaction);

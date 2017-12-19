@@ -1,0 +1,24 @@
+﻿@model Gradebook.PresentationLayer.WebApplication.Models.BasicModels.SubjectModel
+@using Gradebook.BusinessLogicLayer.Interfaces
+@using Gradebook.BusinessLogicLayer.Managers
+
+@{
+    IUserManager _userManager = new UserManager();
+    IEnumerable<UserModel> userModels = _userManager.GetAll().Select(x => (UserModel)x);
+    var userList = new SelectList(userModels, "Id", "FullName", Model.UserId);
+}
+
+@using (Html.BeginForm("AddSubject", "Acp", FormMethod.Post, new { @class = "main-form-row" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div></div>
+    <div class="main-form-input">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div>@Html.DropDownListFor(x => x.UserId, userList)</div><div class="details-coll">
+    <button type="submit"><i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i></button>
+</div>
+}

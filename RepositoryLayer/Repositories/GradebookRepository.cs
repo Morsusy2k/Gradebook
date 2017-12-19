@@ -20,6 +20,11 @@ namespace Gradebook.RepositoryLayer.Repositories
             return _provider.GetGradebookById(id);
         }
 
+        public Gbook GetGradebookByClassId(int id)
+        {
+            return _provider.GetGradebookByClassId(id);
+        }
+
         public Gbook InsertGradebook(Gbook gradebook, ITransaction transaction = null)
         {
             return _provider.InsertGradebook(gradebook, transaction);
